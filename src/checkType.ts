@@ -9,7 +9,6 @@ export function checkType<T>(typeOrFunction: TypeRepresentation<T>, value: T, op
 }
 /** @internal */
 export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Result {
-  // console.log(options);
   options.dontEscape = options.asString || options.dontEscape
   options.printResult && console.log(options)
 

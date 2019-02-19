@@ -6,6 +6,7 @@ declare global {
   namespace jest {
     interface Matchers<R> {
       toMatchType<T>(type: TypeRepresentation<T>, options?: Options): R
+      toCompile<T>(options?: Options): R
     }
   }
 }
@@ -20,10 +21,25 @@ if (typeof expect !== 'undefined') {
             typeof type === 'string' ? `type ${type}` : `types in code "${r.testCode}"`
           }but ${
             this.isNot
-              ? "didn't"
+              ? "did"
               : `[${r.failErrors ? r.failErrors.map(r => r.message).join('\n') : r.error ? r.error : 'UNKNOWN'}]`
           }`,
       }
     },
+
+    toCompile<T>(value: T, options: Options = {asString: true, dontEscape: true}) {
+      options = {...options, ...{asString: true, dontEscape: true}}
+      const r = checkType(()=>value+'', '', options)
+      return {
+        pass: r.pass,
+        message: () =>
+          `expect value "${value}" ${this.isNot ? 'not ' : ''}to compile but ${
+            this.isNot
+              ? "did"
+              : `[${r.failErrors ? r.failErrors.map(r => r.message).join('\n') : r.error ? r.error : 'UNKNOWN'}]`
+          }`,
+      }
+    },
+    
   })
 }
