@@ -71,6 +71,14 @@ To rollback the changes execute the following command. It will clean all the add
 npx get-type-string --cleanArguments
 ```
 
+API
+===
+
+*   [Per-project JS API](api/interfaces/_types_.config.md)
+*   [Per-file JS API](api/interfaces/_types_.replacefunctioncallsoptions.md)
+
+(all the options apply to the CLI)
+
 Motivation
 ----------
 
@@ -86,6 +94,11 @@ test('UnionOf transform a tuple into an union type', () => {
 ```
 
 Trying to develop a preprocessing tool to mutate TypeScript and replace certain function call expressions with referenced type text so we have access to this info at runtime. tsd-check is not enough for me since I need to verify types at runtime to reproduce false positives, and isNot helpers. (I cannot reproduce an error at compile time in a test)
+
+TODO / ISSUES
+-------------
+
+*   \--cleanArguments - when comma it breaks - TypeText<ArrayIndexUnion('T',) - must remove the comma too.
 
 ## Index
 

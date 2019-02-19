@@ -29,7 +29,7 @@
 
 **● allCallerFiles**: *`string`[]*
 
-*Defined in [types.ts:24](https://github.com/cancerberoSgx/tsd-check-runtime/blob/3ad6908/src/types.ts#L24)*
+*Defined in [types.ts:24](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/src/types.ts#L24)*
 
 ___
 <a id="callerfile"></a>
@@ -38,7 +38,7 @@ ___
 
 **● callerFile**: *`undefined` \| `string`*
 
-*Defined in [types.ts:22](https://github.com/cancerberoSgx/tsd-check-runtime/blob/3ad6908/src/types.ts#L22)*
+*Defined in [types.ts:22](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/src/types.ts#L22)*
 
 ___
 <a id="code"></a>
@@ -47,7 +47,7 @@ ___
 
 **● code**: *`undefined` \| `string`*
 
-*Defined in [types.ts:20](https://github.com/cancerberoSgx/tsd-check-runtime/blob/3ad6908/src/types.ts#L20)*
+*Defined in [types.ts:20](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/src/types.ts#L20)*
 
 ___
 <a id="error"></a>
@@ -56,7 +56,7 @@ ___
 
 **● error**: *`undefined` \| `string`*
 
-*Defined in [types.ts:18](https://github.com/cancerberoSgx/tsd-check-runtime/blob/3ad6908/src/types.ts#L18)*
+*Defined in [types.ts:18](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/src/types.ts#L18)*
 
 ___
 <a id="failerrors"></a>
@@ -65,7 +65,7 @@ ___
 
 **● failErrors**: *[CompilationError](_types_.compilationerror.md)[]*
 
-*Defined in [types.ts:19](https://github.com/cancerberoSgx/tsd-check-runtime/blob/3ad6908/src/types.ts#L19)*
+*Defined in [types.ts:19](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/src/types.ts#L19)*
 
 ___
 <a id="filepath"></a>
@@ -74,7 +74,7 @@ ___
 
 **● filePath**: *`undefined` \| `string`*
 
-*Defined in [types.ts:23](https://github.com/cancerberoSgx/tsd-check-runtime/blob/3ad6908/src/types.ts#L23)*
+*Defined in [types.ts:23](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/src/types.ts#L23)*
 
 ___
 <a id="pass"></a>
@@ -83,7 +83,7 @@ ___
 
 **● pass**: *`boolean`*
 
-*Defined in [types.ts:17](https://github.com/cancerberoSgx/tsd-check-runtime/blob/3ad6908/src/types.ts#L17)*
+*Defined in [types.ts:17](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/src/types.ts#L17)*
 
 ___
 <a id="testcode"></a>
@@ -92,7 +92,7 @@ ___
 
 **● testCode**: *`undefined` \| `string`*
 
-*Defined in [types.ts:21](https://github.com/cancerberoSgx/tsd-check-runtime/blob/3ad6908/src/types.ts#L21)*
+*Defined in [types.ts:21](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/src/types.ts#L21)*
 
 ___
 

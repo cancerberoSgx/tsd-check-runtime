@@ -24,7 +24,7 @@
 
 **Ƭ TypeRepresentation**: *`string` \| `function`*
 
-*Defined in [types.ts:38](https://github.com/cancerberoSgx/tsd-check-runtime/blob/3ad6908/src/types.ts#L38)*
+*Defined in [types.ts:38](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/src/types.ts#L38)*
 
 ___
 

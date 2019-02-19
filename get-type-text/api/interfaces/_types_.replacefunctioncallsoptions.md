@@ -28,7 +28,7 @@ Options accepted by the low level call `replaceFunctionCall`. They describe the 
 
 **● cleanArguments**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:38](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/types.ts#L38)*
+*Defined in [types.ts:38](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/types.ts#L38)*
 
 if true the tool will clean all arguments in matched function call expressions
 
@@ -39,7 +39,7 @@ ___
 
 **● functionName**: *`undefined` \| `string`*
 
-*Defined in [types.ts:36](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/types.ts#L36)*
+*Defined in [types.ts:36](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/types.ts#L36)*
 
 The name of the function in the function call expression
 
@@ -50,7 +50,7 @@ ___
 
 **● moduleSpecifier**: *`undefined` \| `string`*
 
-*Defined in [types.ts:34](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/types.ts#L34)*
+*Defined in [types.ts:34](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/types.ts#L34)*
 
 Default value: `get-type-text`. Name of the import module specifier from which the target function in the function call expression needs to be imported in order to perform the arguments modification.
 

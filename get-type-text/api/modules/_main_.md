@@ -16,9 +16,9 @@
 
 ###  main
 
-▸ **main**(c: *[Config](../interfaces/_types_.config.md)*): `void`
+▸ **main**(config: *[Config](../interfaces/_types_.config.md)*): `void`
 
-*Defined in [main.ts:6](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/main.ts#L6)*
+*Defined in [main.ts:6](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/main.ts#L6)*
 
 public JavaScript API to execute the tool on a given TypeScript project in filesystem. See `Config`.
 
@@ -26,7 +26,7 @@ public JavaScript API to execute the tool on a given TypeScript project in files
 
 | Name | Type |
 | ------ | ------ |
-| c | [Config](../interfaces/_types_.config.md) |
+| config | [Config](../interfaces/_types_.config.md) |
 
 **Returns:** `void`
 

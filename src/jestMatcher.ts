@@ -21,7 +21,7 @@ if (typeof expect !== 'undefined') {
             typeof type === 'string' ? `type ${type}` : `types in code "${r.testCode}"`
           }but ${
             this.isNot
-              ? "did"
+              ? 'did'
               : `[${r.failErrors ? r.failErrors.map(r => r.message).join('\n') : r.error ? r.error : 'UNKNOWN'}]`
           }`,
       }
@@ -29,17 +29,16 @@ if (typeof expect !== 'undefined') {
 
     toCompile<T>(value: T, options: Options = {asString: true, dontEscape: true}) {
       options = {...options, ...{asString: true, dontEscape: true}}
-      const r = checkType(()=>value+'', '', options)
+      const r = checkType(() => value + '', '', options)
       return {
         pass: r.pass,
         message: () =>
           `expect value "${value}" ${this.isNot ? 'not ' : ''}to compile but ${
             this.isNot
-              ? "did"
+              ? 'did'
               : `[${r.failErrors ? r.failErrors.map(r => r.message).join('\n') : r.error ? r.error : 'UNKNOWN'}]`
           }`,
       }
     },
-    
   })
 }

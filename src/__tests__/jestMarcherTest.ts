@@ -3,7 +3,6 @@ import '..'
 type UnionOf<T extends any[]> = T[number]
 
 describe('jestMatchers', () => {
-
   describe('toMatchType', () => {
     it('should work jest matcher toMatchType', () => {
       expect('a').not.toMatchType(`UnionOf<[1, false]>`)
@@ -18,9 +17,10 @@ describe('jestMatchers', () => {
 
   describe('toCompile', () => {
     it('toCompile', () => {
-      expect(`var a = 1`).toCompile()
+      expect([1,2,3]).toMatchType(`UnionOf<[1, false]>`)
       expect(`v a r a = 1`).not.toCompile()
     })
   })
 
 })
+

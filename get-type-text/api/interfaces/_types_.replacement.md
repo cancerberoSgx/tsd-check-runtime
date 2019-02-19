@@ -24,7 +24,7 @@
 
 **● file**: *`string`*
 
-*Defined in [types.ts:2](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/types.ts#L2)*
+*Defined in [types.ts:2](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/types.ts#L2)*
 
 ___
 <a id="firsttime"></a>
@@ -33,7 +33,7 @@ ___
 
 **● firstTime**: *`boolean`*
 
-*Defined in [types.ts:4](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/types.ts#L4)*
+*Defined in [types.ts:4](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/types.ts#L4)*
 
 ___
 <a id="replacement"></a>
@@ -42,7 +42,7 @@ ___
 
 **● replacement**: *`string`*
 
-*Defined in [types.ts:3](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/types.ts#L3)*
+*Defined in [types.ts:3](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/types.ts#L3)*
 
 ___
 

@@ -20,7 +20,7 @@
 
 ▸ **extractCallExpressionsFrom**(sourceFile: *`SourceFile`*, moduleSpecifier: *`string`*, name: *`string`*): `CallExpression`<`CallExpression`>[]
 
-*Defined in [replaceFunctionCall.ts:44](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/replaceFunctionCall.ts#L44)*
+*Defined in [replaceFunctionCall.ts:50](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/replaceFunctionCall.ts#L50)*
 
 **Parameters:**
 
@@ -39,7 +39,7 @@ ___
 
 ▸ **quote**(s: *`string`*, q?: *`string`*): `string`
 
-*Defined in [replaceFunctionCall.ts:64](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/replaceFunctionCall.ts#L64)*
+*Defined in [replaceFunctionCall.ts:70](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/replaceFunctionCall.ts#L70)*
 
 **Parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **replaceFunctionCall**(sourceFile: *`SourceFile`*, __namedParameters?: *`object`*): (`undefined` \| [Replacement](../interfaces/_types_.replacement.md))[]
 
-*Defined in [replaceFunctionCall.ts:5](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/replaceFunctionCall.ts#L5)*
+*Defined in [replaceFunctionCall.ts:5](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/replaceFunctionCall.ts#L5)*
 
 JavaScript API to replace arguments of all function expression calls in given (ts-simple-ast SourceFile) file that match given options. See `ReplaceFunctionCallsOptions`.
 

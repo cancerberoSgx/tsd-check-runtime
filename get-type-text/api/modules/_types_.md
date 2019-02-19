@@ -25,7 +25,7 @@
 
 **● FUNCTION_NAME**: *"TypeText"* = "TypeText"
 
-*Defined in [types.ts:43](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/types.ts#L43)*
+*Defined in [types.ts:43](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/types.ts#L43)*
 
 ___
 <a id="module_specifier_default"></a>
@@ -34,7 +34,7 @@ ___
 
 **● MODULE_SPECIFIER_DEFAULT**: *"get-type-text"* = "get-type-text"
 
-*Defined in [types.ts:41](https://github.com/cancerberoSgx/tsd-check-runtime/blob/33a0366/get-type-text/src/types.ts#L41)*
+*Defined in [types.ts:41](https://github.com/cancerberoSgx/tsd-check-runtime/blob/b4cf5d9/get-type-text/src/types.ts#L41)*
 
 ___
 
