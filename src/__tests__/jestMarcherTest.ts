@@ -17,10 +17,8 @@ describe('jestMatchers', () => {
 
   describe('toCompile', () => {
     it('toCompile', () => {
-      expect([1,2,3]).toMatchType(`UnionOf<[1, false]>`)
+      expect(`var a = 1`).toCompile()
       expect(`v a r a = 1`).not.toCompile()
     })
   })
-
 })
-

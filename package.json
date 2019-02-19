@@ -1,6 +1,6 @@
 {
   "name": "tsd-check-runtime",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "TypeScript type declaration verification library. It's like tsd-check but works at runtime, actually compiling the code",
   "types": "dist/src/index.d.ts",
   "main": "dist/src/index.js",
@@ -22,7 +22,7 @@
   "devDependencies": {
     "@types/jest": "^24.0.11",
     "@types/node": "^10.12.18",
-    "get-type-text": "0.0.4",
+    "get-type-text": "0.0.5",
     "jest": "^24.5.0",
     "prettier": "^1.16.4",
     "ts-jest": "^24.0.0",
