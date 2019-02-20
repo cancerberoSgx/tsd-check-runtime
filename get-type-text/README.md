@@ -2,6 +2,8 @@
 
 An unconventional way of getting a type text at runtime in TypeScript
 
+**Obsoleted by [typescript-poor-man-reflection](https://cancerberosgx.github.io/typescript-poor-man-reflection)** which is a more general tool
+
 # Why ?
 
  * https://github.com/Microsoft/TypeScript/issues/14419

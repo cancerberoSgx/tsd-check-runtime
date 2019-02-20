@@ -1,7 +1,7 @@
 {
   "name": "get-type-text",
   "version": "0.0.5",
-  "description": "ample-project",
+  "description": "An unconventional way of getting a type text at runtime in TypeScript",
   "types": "dist/src/index.d.ts",
   "main": "dist/src/index.js",
   "bin": "bin/get-type-text.js",

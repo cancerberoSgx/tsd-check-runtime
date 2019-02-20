@@ -12,6 +12,7 @@ export interface Options {
   verifyProject?: boolean
   printResultIfFail?: boolean
   printResult?: boolean
+  dontCreateTestCodeVariable?: boolean
 }
 export interface Result {
   pass: boolean
@@ -35,4 +36,4 @@ export interface CompilationError {
   endColumn: number
   endLineNumber: number
 }
-export type TypeRepresentation<T> = string | ((value: T | string) => string)
+export type TypeRepresentation<T> = string | ((value: T | string, type?: TypeRepresentation<T>) => string)

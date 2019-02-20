@@ -79,13 +79,20 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
     }
   }
   if (typeof typeOrFunction === 'string') {
-    testCode = `const ${unique('variable')}: ${typeOrFunction} = ${escapedValue}`
+    if(options.dontCreateTestCodeVariable){
+      testCode = typeOrFunction
+    }
+    else {
+      testCode = `const ${unique('variable')}: ${typeOrFunction} = ${escapedValue}`
+    }
   } else {
     testCode = typeOrFunction(escapedValue)
   }
   const code = `
-  ${readFileSync(callerFile).toString()}
-  ${testCode}`
+${readFileSync(callerFile).toString()}
+function ${unique('__checkType')}(){
+${testCode}
+}`
   sourceFile = project.createSourceFile(filePath, code)
   d = sourceFile.getPreEmitDiagnostics()
   const r = {
