@@ -4,7 +4,6 @@ import { Result } from '../types'
 import { ArrayLiteral, Tuple } from '../util'
 
 describe('compile', () => {
-  
   describe('checkCompile', () => {
     interface I {
       m(): number

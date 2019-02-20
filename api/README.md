@@ -208,7 +208,10 @@ Problems
 ### External modules
 
 * ["checkType"](modules/_checktype_.md)
+* ["compile"](modules/_compile_.md)
 * ["expectType"](modules/_expecttype_.md)
+* ["jestMatcher"](modules/_jestmatcher_.md)
+* ["typeTestUtil"](modules/_typetestutil_.md)
 * ["types"](modules/_types_.md)
 * ["util"](modules/_util_.md)
 

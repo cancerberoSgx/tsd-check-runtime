@@ -7,15 +7,19 @@ import { checkCompile } from './compile'
 declare global {
   namespace jest {
     interface Matchers<R> {
+      /**
+       * calls [[checkType]] with given value and type and optional options. Options might also include
+       * `exactly` property which will verify that the value type not only match given type but also that they
+       * are identical
+       */
       toMatchType<R>(type: TypeRepresentation<R>, options?: Options & { exactly?: boolean }): R
-    }
-  }
-}
-
-declare global {
-  namespace jest {
-    interface Matchers<R> {
+      /**
+       * Calls [[checkCompile]] with given value and type and optional options.
+       */
       toCompile<R>(options: Options, ...types: PrefixedText[]): R
+      /**
+       * Calls [[checkCompile]] with given value and type and optional options.
+       */
       toCompile<R>(...types: PrefixedText[]): R
     }
   }
