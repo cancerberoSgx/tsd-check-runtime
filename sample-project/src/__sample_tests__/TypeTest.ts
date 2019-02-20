@@ -1,4 +1,4 @@
-import { Type, PrefixedText } from 'tsd-check-runtime';
+import { Type } from 'tsd-check-runtime';
 
 describe('Type', () => {
 

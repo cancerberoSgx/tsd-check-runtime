@@ -13,10 +13,12 @@ declare global {
        * are identical
        */
       toMatchType<R>(type: TypeRepresentation<R>, options?: Options & { exactly?: boolean }): R
+
       /**
        * Calls [[checkCompile]] with given value and type and optional options.
        */
       toCompile<R>(options: Options, ...types: PrefixedText[]): R
+
       /**
        * Calls [[checkCompile]] with given value and type and optional options.
        */

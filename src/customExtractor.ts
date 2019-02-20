@@ -1,11 +1,30 @@
 import { CallExpression, TypeGuards, SyntaxKind, Node } from 'ts-simple-ast'
 import { PrefixedText } from './types'
 
+/**
+ * Use this function to extract a type text from TypeScript code as a string variable.
+ *
+ * For this to work you need to preprocess your source code using the following command before compiling with
+ * tsc:
+ *
+ * ```
+ * npx tsd-check-runtime
+ * ```
+ *
+ * **Warning**, your source files calling this function will be modified
+ *
+ * To undo the changes call the following command, for example, after the tests finish executing:
+ *
+ * ```
+ * npx tsd-check-runtime --clean
+ * ```
+ */
 export function Type<T>(t?: PrefixedText): PrefixedText {
   return t! // we want to return undefined if that's the case should explore in user face.
 }
 
 const sourceFilesPrepend: { [name: string]: number } = {}
+
 export const customExtractor = (n: CallExpression, index: number, extractorPrependVariableName: string) => {
   if (typeof sourceFilesPrepend[n.getSourceFile().getFilePath()] === 'undefined') {
     // rootDeclarations are considered for repeated names but not added to sourceFilesPrepend

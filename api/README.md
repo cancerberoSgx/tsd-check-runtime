@@ -13,11 +13,23 @@ This tool allows to compile TypeScript code at runtime, using the context of the
 Usage
 -----
 
-**IMPORTANT** you need to run the tests using ts-node, ts-jest or similar tool. Probably it won't work if you run your project's emitted JavaScript files since the types are lost there.
+**IMPORTANT** Unless you use `Type` and `tsd-check-runtime` CLI tool (see below), you probably will need to run the tests using `ts-node`, `ts-jest` or similar tool.
 
 ```sh
 npm install -D tsd-check-runtime
 ```
+
+### API
+
+*   Expectation JS APIs:
+    *   [JS API Options](api/interfaces/_types_.options.md)
+    *   [`checkType()`](api/modules/_checktype_.md)
+    *   [`expectType()`](api/modules/_expecttype_.md),
+    *   [`checkCompile()` and `expectCompile()`](api/modules/_compile_.md)
+    *   [`Result` object returned by `checkType()`and `checkCompile()`](api/interfaces/_types_.result.md)
+*   [jest matchers `toMatchType()` and `toCompile()`](api/interfaces/_jestmatcher_.__global.jest.matchers.md)
+*   [`Type()` function for extracting Types text](api/modules/_customextractor_.md#type)
+*   [CLI options of `tsd-check-runtime` CLI tool](api/interfaces/_customextractormain_.tsdcheckruntimeclioptions.md)
 
 ### expectType()
 
@@ -52,7 +64,7 @@ test('expectType - the high level API', () => {
 
 ### checkType()
 
-The low level API. does the same thing as the simplified one, but returns result object with more information.
+The low level API. Does the same thing as the simplified one, but returns result object with more information.
 
 ```ts
 import {checkType} from 'tsd-check-runtime'
@@ -130,13 +142,6 @@ For it to work you need to execute `npx tsd-check-runtime` before `tsc` or `npm 
 *   types are not hard-coded as strings so tests won't get outdated on refactors
 *   you can reference types or variables on any scope of the file, not only globals
 
-### API
-
-*   [Options](api/interfaces/_types_.options.md)
-*   [Result](api/interfaces/_types_.result.md)
-*   [expectType](api/modules/_expecttype_.md)
-*   [checkType](api/modules/_checktype_.md)
-
 How it works
 ------------
 
@@ -209,7 +214,10 @@ Problems
 
 * ["checkType"](modules/_checktype_.md)
 * ["compile"](modules/_compile_.md)
+* ["customExtractor"](modules/_customextractor_.md)
+* ["customExtractorMain"](modules/_customextractormain_.md)
 * ["expectType"](modules/_expecttype_.md)
+* ["index"](modules/_index_.md)
 * ["jestMatcher"](modules/_jestmatcher_.md)
 * ["typeTestUtil"](modules/_typetestutil_.md)
 * ["types"](modules/_types_.md)

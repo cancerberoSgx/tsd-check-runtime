@@ -1,8 +1,8 @@
 # get-type-text 
 
-An unconventional way of getting a type text at runtime in TypeScript
+**Obsoleted by [tsd-check-runtime](https://cancerberosgx.github.io/tsd-check-runtime) owns Type and CLI functionality and more generally by [typescript-poor-man-reflection](https://cancerberosgx.github.io/typescript-poor-man-reflection)** in which the previous is based on.
 
-**Obsoleted by [typescript-poor-man-reflection](https://cancerberosgx.github.io/typescript-poor-man-reflection)** which is a more general tool
+An unconventional way of getting a type text at runtime in TypeScript
 
 # Why ?
 

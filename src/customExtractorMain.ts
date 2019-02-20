@@ -2,7 +2,9 @@ import { main } from 'typescript-poor-man-reflection'
 import { customExtractor } from './customExtractor'
 import { ReplaceProjectFunctionCallOptions } from 'typescript-poor-man-reflection/dist/src/types'
 
-const args = require('yargs-parser')(process.argv.slice(2)) as ReplaceProjectFunctionCallOptions
+export interface TsdCheckRuntimeCliOptions extends ReplaceProjectFunctionCallOptions {}
+
+const args = require('yargs-parser')(process.argv.slice(2)) as TsdCheckRuntimeCliOptions
 
 main({
   ...args,
