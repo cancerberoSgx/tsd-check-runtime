@@ -1,3 +1,5 @@
+// import { PrefixedText } from 'typescript-poor-man-reflection ';
+
 export interface Options {
   /**
    * Use another tsconfig.json file than the default './tsconfig.json'. If so make sure you also set the property `folder` if it's in another folder
@@ -54,6 +56,7 @@ export interface Options {
    */
   failOnlyWithErrorCodes?: number[]
 }
+
 export interface Result {
   pass: boolean
   error?: string
@@ -64,6 +67,7 @@ export interface Result {
   filePath?: string
   allCallerFiles: string[]
 }
+
 export interface CompilationError {
   message: string
   code: number
@@ -76,11 +80,13 @@ export interface CompilationError {
   endColumn: number
   endLineNumber: number
 }
+
 export type TypeRepresentation<T> =
   | string
   | PrefixedText
   | ((value: T | string, type?: TypeRepresentation<T>) => string)
+
 export interface PrefixedText {
   text: string
-  prefix: string
+  prefix: string | undefined
 }

@@ -1,13 +1,13 @@
-import {expectType} from '../expectType'
-import {KeysToTuple} from './assets/type2'
-import {checkType} from '../checkType'
+import { expectType } from '../expectType'
+import { KeysToTuple } from './assets/type2'
+import { checkType } from '../checkType'
 type UnionOf<T extends any[]> = T[number]
 
 test('expectType - the high level API', () => {
   // you can safely reference an imported type:
   expect(expectType('KeysToTuple<typeof Object.prototype>', 'will fail')).toBe(false)
   expect(
-    expectType('KeysToTuple<typeof Object.prototype>', ['hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable']),
+    expectType('KeysToTuple<typeof Object.prototype>', ['hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable'])
   ).toBe(true)
 
   // you can reference a local type as long as it's declared in the global scope of the file, like UnionOf:
@@ -32,15 +32,15 @@ test('expectType - the high level API', () => {
   expect(expectType(value => `const v: typeof Math.pow = ${value}`, (a: Date, b: string) => 2)).toBe(true)
 
   //if you really need to do so, use the option dontEscape and pass the string literal yourself:
-  expect(expectType(value => `const v: typeof Math.pow = ${value}`, `(a:Date, b:string)=>1`, {dontEscape: true})).toBe(
-    false,
-  )
   expect(
-    expectType(value => `const v: typeof Math.pow = ${value}`, `(a:number, b:number)=>1`, {dontEscape: true}),
+    expectType(value => `const v: typeof Math.pow = ${value}`, `(a:Date, b:string)=>1`, { dontEscape: true })
+  ).toBe(false)
+  expect(
+    expectType(value => `const v: typeof Math.pow = ${value}`, `(a:number, b:number)=>1`, { dontEscape: true })
   ).toBe(true)
 
   // if you want to play safer use the option `enforceJsonValues` so functions are not allowed. Functions are dangerous
   // because parameters and return values are not declared - only their type is. The following fails because JSON values
   // are enforced:
-  expect(expectType(value => `const v: typeof describe = ${value}`, describe, {enforceJsonValues: true})).toBe(false)
+  expect(expectType(value => `const v: typeof describe = ${value}`, describe, { enforceJsonValues: true })).toBe(false)
 })

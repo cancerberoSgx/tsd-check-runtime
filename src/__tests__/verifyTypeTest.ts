@@ -1,8 +1,8 @@
-import {checkType} from '../checkType'
-import {KeysToTuple} from './assets/type2'
-import {If, IsString} from './assets/type1'
-import {intermediateFunction} from './assets/intermediaFunction'
-import {intermediateFunction2} from './assets/intermediaFunction2'
+import { checkType } from '../checkType'
+import { KeysToTuple } from './assets/type2'
+import { If, IsString } from './assets/type1'
+import { intermediateFunction } from './assets/intermediaFunction'
+import { intermediateFunction2 } from './assets/intermediaFunction2'
 
 test("should not fail if type don't match", () => {
   const result = checkType('number', '1')
@@ -21,7 +21,7 @@ test('can reference types from other files', () => {
       var b = Math.random()>0.5 ? 1 : '1'
       type CoolType = If<IsString<typeof b>, 'greater than 0.5', 'lower than 0.5'>
       var a: CoolType = ${value}`,
-    'equals 2 * 3',
+    'equals 2 * 3'
   )
   expect(result.pass).toBe(false)
 
@@ -29,7 +29,7 @@ test('can reference types from other files', () => {
     value => `
       var b = Math.random()>0.5 ? 1 : '1'
       var a: If<IsString<typeof b>, 'greater than 0.5', 'lower than 0.5'> = ${value}`,
-    'greater than 0.5',
+    'greater than 0.5'
     // {printResultIfFail: true},
   )
   expect(result2.pass).toBe(true)
@@ -40,13 +40,13 @@ test('should allow to pass an array value', () => {
   let result = checkType(
     value => `
       var a: KeysToTuple<Date> = ${value}`,
-    ['these are', 'not the keys of Date'],
+    ['these are', 'not the keys of Date']
   )
   expect(result.pass).toBe(false)
   result = checkType(
     value => `
       var a: KeysToTuple<Date> = ${value}`,
-    ['toUTCString', 'toISOString', 'toJSON'],
+    ['toUTCString', 'toISOString', 'toJSON']
   )
   expect(result.pass).toBe(true)
 })
@@ -56,7 +56,7 @@ test('should allow to pass an function value', () => {
     value => `
       type F = (...args: any[])=>number
       var a: F = ${value}`,
-    () => 'fails',
+    () => 'fails'
   )
   expect(result.pass).toBe(false)
 
@@ -64,7 +64,7 @@ test('should allow to pass an function value', () => {
     value => `
       type F = (...args: any[])=>number
       var a: F = ${value}`,
-    () => Math.PI,
+    () => Math.PI
   )
   expect(result.pass).toBe(true)
 })
@@ -77,7 +77,7 @@ test('should reference types in the global scope', () => {
 })
 
 test('should allow intermediate function calls', () => {
-  let result = intermediateFunction(`number`, 1, {printResultIfFail: true})
+  let result = intermediateFunction(`number`, 1, { printResultIfFail: true })
   expect(result.pass).toBe(true)
   result = intermediateFunction(`number`, [])
   expect(result.pass).toBe(false)
@@ -91,7 +91,7 @@ test('expectType - the low level API', () => {
   const result = checkType(
     value => `
       var a: KeysToTuple<Date> = ${value}`,
-    ['toUTCString', 'toISOString', 'toJSON'],
+    ['toUTCString', 'toISOString', 'toJSON']
   )
   if (!result.pass) {
     console.error(result.error, result.code, result.failErrors, result.testCode)

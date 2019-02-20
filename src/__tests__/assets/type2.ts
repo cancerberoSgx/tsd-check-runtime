@@ -5,7 +5,7 @@ interface I {
 }
 
 // takes an object, and returns its values in an intersection
-type IntersectionOfValues<T> = {[K in keyof T]: (p: T[K]) => void} extends {[n: string]: (p: infer I) => void}
+type IntersectionOfValues<T> = { [K in keyof T]: (p: T[K]) => void } extends { [n: string]: (p: infer I) => void }
   ? I
   : never
 
@@ -37,7 +37,7 @@ export type KeysToTuple<T> =
   // store the keys as arguments to functions so that they can be retrieved with inference later
   IntersectionOfFunctionsToTuple<
     // convert each key into a function that takes that key type as an argument
-    IntersectionOfValues<{[K in keyof T]: (v: K) => void}>
+    IntersectionOfValues<{ [K in keyof T]: (v: K) => void }>
   >
 
 export type CountKeys<T> = KeysToTuple<T>['length']

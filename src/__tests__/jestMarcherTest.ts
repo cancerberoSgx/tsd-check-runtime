@@ -6,7 +6,7 @@ interface A {}
 interface B extends A {
   b: number
 }
-var testVariable1: B = {b: 8}
+var testVariable1: B = { b: 8 }
 
 describe('jestMatchers', () => {
   describe('toMatchType', () => {
@@ -23,9 +23,9 @@ describe('jestMatchers', () => {
 
   describe('exactly', () => {
     it('should exactly match type if exactly is passed', () => {
-      expect(testVariable1).toMatchType('B', {exactly: true})
+      expect(testVariable1).toMatchType('B', { exactly: true })
       expect(testVariable1).toMatchType('B')
-      expect(testVariable1).not.toMatchType('A', {exactly: true})
+      expect(testVariable1).not.toMatchType('A', { exactly: true })
       expect(testVariable1).toMatchType('A')
     })
   })

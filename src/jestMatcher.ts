@@ -1,19 +1,19 @@
-import {Options, TypeRepresentation} from './types'
-import {checkType} from './checkType'
-import {escapeValue, unique} from './util'
-import {number} from './typeTestUtil'
+import { Options, TypeRepresentation } from './types'
+import { checkType } from './checkType'
+import { escapeValue, unique } from './util'
+import { number } from './typeTestUtil'
 
 declare global {
   namespace jest {
     interface Matchers<R> {
-      toMatchType<T>(type: TypeRepresentation<T>, options?: Options & {exactly?: boolean}): R
+      toMatchType<T>(type: TypeRepresentation<T>, options?: Options & { exactly?: boolean }): R
       toCompile<T>(options?: Options): R
     }
   }
 }
 if (typeof expect !== 'undefined') {
   expect.extend({
-    toMatchType<T>(value: T, type: TypeRepresentation<T>, options: Options & {exactly?: boolean} = {}) {
+    toMatchType<T>(value: T, type: TypeRepresentation<T>, options: Options & { exactly?: boolean } = {}) {
       if (options.exactly) {
         type = `
 function ${unique('__jestMatcher_toMatchType')}(){
@@ -21,7 +21,7 @@ function ${unique('__jestMatcher_toMatchType')}(){
   var anotherVariable = ${escapeValue(value, options)}
   var variableToMatchTypeExactly: ExactlyMatch<${type}, typeof anotherVariable> = true
 }`
-        options = {...options, dontCreateTestCodeVariable: true}
+        options = { ...options, dontCreateTestCodeVariable: true }
       }
 
       const r = checkType(type, value, options)
@@ -40,12 +40,12 @@ function ${unique('__jestMatcher_toMatchType')}(){
                     ? r.error
                     : 'UNKNOWN'
                 }]`
-          }`,
+          }`
       }
     },
 
-    toCompile<T>(value: T, options: Options = {asString: true, dontEscape: true}) {
-      options = {...options, ...{asString: true, dontEscape: true}}
+    toCompile<T>(value: T, options: Options = { asString: true, dontEscape: true }) {
+      options = { ...options, ...{ asString: true, dontEscape: true } }
       const r = checkType(() => value + '', '', options)
       return {
         pass: r.pass,
@@ -60,9 +60,9 @@ function ${unique('__jestMatcher_toMatchType')}(){
                     ? r.error
                     : 'UNKNOWN'
                 }]`
-          }`,
+          }`
       }
-    },
+    }
   })
 }
 

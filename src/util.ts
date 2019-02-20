@@ -1,6 +1,6 @@
-import {Diagnostic, ts} from 'ts-simple-ast'
-import {Options, CompilationError} from './types'
-import {stringify} from 'javascript-stringify'
+import { Diagnostic, ts } from 'ts-simple-ast'
+import { Options, CompilationError } from './types'
+import { stringify } from 'javascript-stringify'
 /** @internal */
 
 export function formatDiagnostics(d: Diagnostic[]): CompilationError[] {
@@ -17,7 +17,7 @@ export function formatDiagnostics(d: Diagnostic[]): CompilationError[] {
       ts.getLineAndCharacterOfPosition(tsd.getSourceFile()!.compilerNode, tsd.getStart()! + tsd.getLength()!)
         .character + 1,
     endLineNumber:
-      ts.getLineAndCharacterOfPosition(tsd.getSourceFile()!.compilerNode, tsd.getStart()! + tsd.getLength()!).line + 1,
+      ts.getLineAndCharacterOfPosition(tsd.getSourceFile()!.compilerNode, tsd.getStart()! + tsd.getLength()!).line + 1
   }))
 }
 let _unique: number = 0
@@ -57,13 +57,13 @@ export function escapeValue<T>(v: T, options: Options): string | undefined {
 
 const callsites = require('callsites')
 /** @internal */
-export function getCallerFile(): {callerFile: string | undefined; allCallerFiles: string[]} {
+export function getCallerFile(): { callerFile: string | undefined; allCallerFiles: string[] } {
   const c = callsites() as any[]
   let f: string | undefined
   const jestMatcher = c
     .filter(c => c.getFileName())
     .findIndex(
-      c => c.getFileName().endsWith('dist/src/jestMatcher.js') || c.getFileName().endsWith('src/jestMatcher.ts'),
+      c => c.getFileName().endsWith('dist/src/jestMatcher.js') || c.getFileName().endsWith('src/jestMatcher.ts')
     )
   if (jestMatcher !== -1) {
     // this is for the case of using jest matcher from an external project:
@@ -73,5 +73,5 @@ export function getCallerFile(): {callerFile: string | undefined; allCallerFiles
     f = c[3] && c[3].getFileName()
   }
   // console.log('choose: ', f, 'all\n', c.map((c: any) => c.getFileName()))
-  return {callerFile: f, allCallerFiles: c.map((c: any) => c.getFileName()).map(c => c)}
+  return { callerFile: f, allCallerFiles: c.map((c: any) => c.getFileName()).map(c => c) }
 }

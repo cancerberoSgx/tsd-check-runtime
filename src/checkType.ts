@@ -1,8 +1,8 @@
-import {Project, Diagnostic, ts, SourceFile} from 'ts-simple-ast'
-import {dirname, join, basename} from 'path'
-import {readFileSync} from 'fs'
-import {Options, Result, TypeRepresentation} from './types'
-import {getCallerFile, formatDiagnostics, unique, escapeValue} from './util'
+import { Project, Diagnostic, ts, SourceFile } from 'ts-simple-ast'
+import { dirname, join, basename } from 'path'
+import { readFileSync } from 'fs'
+import { Options, Result, TypeRepresentation } from './types'
+import { getCallerFile, formatDiagnostics, unique, escapeValue } from './util'
 
 export function checkType<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Result {
   return checkTypeCore(typeOrFunction, value, options)
@@ -18,15 +18,15 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
   if (!project) {
     project = new Project({
       tsConfigFilePath,
-      addFilesFromTsConfig: true,
+      addFilesFromTsConfig: true
     })
   }
-  const {callerFile, allCallerFiles} = getCallerFile()
+  const { callerFile, allCallerFiles } = getCallerFile()
   if (!callerFile) {
     return {
       pass: false,
       error: `Caller source file cannot be found, aborting`,
-      allCallerFiles,
+      allCallerFiles
     }
   }
   const callerSourceFile = project.getSourceFile(callerFile)
@@ -35,7 +35,7 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
       pass: false,
       error: `Caller source must belong to ${tsConfigFilePath} project but ${callerFile} does not`,
       callerFile,
-      allCallerFiles,
+      allCallerFiles
     }
   }
   if (options.verifyProject) {
@@ -44,10 +44,10 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
       return {
         pass: false,
         error: `Given TypeScript project cannot have compilation errors, fix them and try again. Errors: ${formatDiagnostics(
-          d,
+          d
         )}`,
         callerFile,
-        allCallerFiles,
+        allCallerFiles
       }
     }
   } else if (!options.dontVerifyFile) {
@@ -56,10 +56,10 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
       return {
         pass: false,
         error: `Caller TypeScript file cannot have compilation errors, fix them and try again. Errors: ${formatDiagnostics(
-          d,
+          d
         )}`,
         callerFile,
-        allCallerFiles,
+        allCallerFiles
       }
     }
   }
@@ -75,7 +75,7 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
       error: `Value is not JSON and option enforceJsonValues was used`,
       callerFile,
       filePath,
-      allCallerFiles,
+      allCallerFiles
     }
   }
 
@@ -84,7 +84,7 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
     options.dontCreateTestCodeVariable = true
   }
 
-  const {text, prefix} = typeof typeOrFunction === 'string' ? {text: typeOrFunction, prefix: ''} : typeOrFunction
+  const { text, prefix } = typeof typeOrFunction === 'string' ? { text: typeOrFunction, prefix: '' } : typeOrFunction
 
   if (options.dontCreateTestCodeVariable) {
     testCode = `${prefix}\n${text}`
@@ -114,7 +114,7 @@ ${testCode}
     testCode,
     callerFile,
     filePath,
-    allCallerFiles,
+    allCallerFiles
   }
 
   if (options.printResult || (!r.pass && options.printResultIfFail)) {

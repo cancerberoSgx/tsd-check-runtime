@@ -1,12 +1,12 @@
-import {expectType} from '../expectType'
+import { expectType } from '../expectType'
 
-import {KeysToTuple} from './assets/type2'
+import { KeysToTuple } from './assets/type2'
 test('types imported from other files or projects is fine', () => {
   expect(expectType('KeysToTuple<typeof Object.prototype>', 'will fail')).toBe(false)
   expect(
     expectType('KeysToTuple<typeof Object.prototype>', ['hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable'], {
       // printResultIfFail: true,
-    }),
+    })
   ).toBe(true)
 })
 
@@ -24,16 +24,16 @@ test('should use functions and value is escaped automatically', () => {
       value => `
       type F = (...args: any[])=>number
       var a: F = ${value}`,
-      () => 'fails',
-    ),
+      () => 'fails'
+    )
   ).toBe(false)
   expect(
     expectType(
       value => `
       type F = (...args: any[])=>number
       var a: F = ${value}`,
-      () => Math.E,
-    ),
+      () => Math.E
+    )
   ).toBe(true)
 })
 

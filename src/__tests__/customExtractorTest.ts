@@ -1,7 +1,7 @@
 import Project from 'ts-simple-ast'
-import {replaceFileFunctionCall} from 'typescript-poor-man-reflection'
+import { replaceFileFunctionCall } from 'typescript-poor-man-reflection'
 import '..'
-import {customExtractor} from '../customExtractor'
+import { customExtractor } from '../customExtractor'
 
 describe('Type() and custom extractor', () => {
   it('should build custom extractor for extracting  all declarations in current source file', () => {
@@ -29,17 +29,26 @@ test('bar', ()=>{
   const var55 = 's'
 })
 const body = Type<any>()
-    `,
+    `
     )
 
-    replaceFileFunctionCall(project.getSourceFile('test.ts')!, {extracts: {Type: customExtractor}})
+    replaceFileFunctionCall(project.getSourceFile('test.ts')!, {
+      extracts: {
+        Type: customExtractor
+      },
+      extractorPrependVariableName: '__CE'
+    })
 
     expect(project.getSourceFile('test.ts')!.getText()).toContain(
-      `const body = Type<any>({\"text\":\"any\",\"prefix\":\"interface I{\\n  i:number\\n}\\nclass C implements I {\\n    i:number=0\\n    m(){\\n      var foo=1\\n      while(true){\\n        var t0 = Date.now()\\n      }\\n    }\\n  }\\nconst var55 = 's'\"})`,
+      `const body = Type<any>({text: "any", prefix: __CE[0]})`
     )
+    expect(project.getSourceFile('test.ts')!.getText()).toContain(
+      `const __CE = ["interface I{\\n  i:number\\n}\\nclass C implements I {\\n    i:number=0\\n    m(){\\n      var foo=1\\n      while(true){\\n        var t0 = Date.now()\\n      }\\n    }\\n  }\\nconst var55 = 's'"]`
+    )
+    expect(project.getSourceFile('test.ts')!.getText()).not.toContain(`\\nvar foo`)
   })
 
-  it('should throw in case duplicate declaration names are found', () => {
+  xit('should throw in case duplicate declaration names are found', () => {
     const project = new Project()
     project.createSourceFile(
       'test.ts',
@@ -51,11 +60,14 @@ describe('ff', ()=>{
     var b = 3
     const a = Type<any>()
   })  
-})`,
+})`
     )
-
     expect(() =>
-      replaceFileFunctionCall(project.getSourceFile('test.ts')!, {extracts: {Type: customExtractor}}),
-    ).toThrow()
+      replaceFileFunctionCall(project.getSourceFile('test.ts')!, {
+        extracts: {
+          Type: customExtractor
+        }
+      })
+    ).toThrowError()
   })
 })
