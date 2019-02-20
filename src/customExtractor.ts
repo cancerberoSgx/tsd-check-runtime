@@ -8,9 +8,6 @@ export function Type<T>(t?: PrefixedText): PrefixedText {
 const sourceFilesPrepend: { [name: string]: number } = {}
 export const customExtractor = (n: CallExpression, index: number, extractorPrependVariableName: string) => {
 
-  // console.log('typeof sourceFilesPrepend[n.getSourceFile().getFilePath()]', typeof sourceFilesPrepend[n.getSourceFile().getFilePath()])
-
-
   if (typeof sourceFilesPrepend[n.getSourceFile().getFilePath()] === 'undefined') {
     const declarations = n
       .getSourceFile()
@@ -40,33 +37,35 @@ export const customExtractor = (n: CallExpression, index: number, extractorPrepe
           if (id) {
             return ['describe', 'it', 'test'].includes(id.getText())
           }
+        } else if (d.getParent() && TypeGuards.isSourceFile(d.getParent()!.getParent())) {
+          return true
         }
       })
 
     let sameName = ''
     let sameNameLineNumber = 0
-      declarations.some(d => {
-        const dNames = getNames(d)
-          return !!declarations.find(
-            d2 =>
-            d2 !== d &&
-            !!getNames(d2).find(n => {
-              
-                if (dNames.includes(n)) {
-                  sameName = `"${n}" found in "${d.getText()}" and in "${d2.getText()}"`
-                  sameNameLineNumber = d.getStartLineNumber()
-                  return true
-                }
-                return false
-              })
-          )
-      })
-      if (sameName!) {
-        throw new Error(`Declarations with same name detected !
+    declarations.some(d => {
+      const dNames = getNames(d)
+      return !!declarations.find(
+        d2 =>
+          d2 !== d &&
+          !!getNames(d2).find(n => {
+            if (dNames.includes(n)) {
+              sameName = `"${n}" found in "${d.getText()}" and in "${d2.getText()}"`
+              sameNameLineNumber = d.getStartLineNumber()
+              return true
+            }
+            return false
+          })
+      )
+    })
+
+    if (sameName!) {
+      throw new Error(`Declarations with same name detected !
 File: "${n.getSourceFile().getFilePath()}:${sameNameLineNumber}"
 Names: ${sameName}
 Type() could fail, rename these identifiers in order to use it!. Aborting.`)
-      }
+    }
 
     sourceFilesPrepend[n.getSourceFile().getFilePath()] = index
 
