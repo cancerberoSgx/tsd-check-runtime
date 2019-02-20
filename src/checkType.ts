@@ -1,7 +1,7 @@
 import { Project, Diagnostic, ts, SourceFile } from 'ts-simple-ast'
 import { dirname, join, basename } from 'path'
 import { readFileSync } from 'fs'
-import { Options, Result, TypeRepresentation } from './types'
+import { Options, Result, TypeRepresentation, PrefixedText } from './types'
 import { getCallerFile, formatDiagnostics, unique, escapeValue } from './util'
 
 export function checkType<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Result {
@@ -80,11 +80,15 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
   }
 
   if (typeof typeOrFunction === 'function') {
-    typeOrFunction = typeOrFunction(escapedValue)
+    typeOrFunction = typeOrFunction(escapedValue as T)
     options.dontCreateTestCodeVariable = true
   }
 
-  const { text, prefix } = typeof typeOrFunction === 'string' ? { text: typeOrFunction, prefix: '' } : typeOrFunction
+  let { text, prefix } = typeof typeOrFunction === 'string' ? { text: typeOrFunction, prefix: '' } : typeOrFunction
+
+  if (!prefix && value && typeof ((value as any) as PrefixedText).prefix === 'string') {
+    prefix = ((value as any) as PrefixedText).prefix
+  }
 
   if (options.dontCreateTestCodeVariable) {
     testCode = `${prefix}\n${text}`
@@ -118,7 +122,7 @@ ${testCode}
   }
 
   if (options.printResult || (!r.pass && options.printResultIfFail)) {
-    console.log(JSON.stringify(r, null, 2))
+    console.log(JSON.stringify({ ...r, code: null }, null, 2))
   }
 
   return r

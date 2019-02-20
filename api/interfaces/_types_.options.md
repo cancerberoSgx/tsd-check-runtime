@@ -32,7 +32,7 @@
 
 **● asString**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:32](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L32)*
+*Defined in [types.ts:32](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L32)*
 
 In cases where the value is an object that knows how to print itself and you don't want to be processed by Stringify - force it to be rendered as string . Implies `dontScape`
 
@@ -43,7 +43,7 @@ ___
 
 **● dontCreateTestCodeVariable**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:52](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L52)*
+*Defined in [types.ts:52](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L52)*
 
 If the type is a string and not a function, then it will not create the dummy variable in the test code
 
@@ -54,7 +54,7 @@ ___
 
 **● dontEscape**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:27](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L27)*
+*Defined in [types.ts:27](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L27)*
 
 Pass true if you are already passing a quoted value. By default value is escaped in the output
 
@@ -65,7 +65,7 @@ ___
 
 **● dontVerifyFile**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:22](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L22)*
+*Defined in [types.ts:22](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L22)*
 
 Won't make the initial verification of the file. Could be a bit faster, but if the file already has compilation errors the test will always fail
 
@@ -76,7 +76,7 @@ ___
 
 **● enforceJsonValues**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:12](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L12)*
+*Defined in [types.ts:12](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L12)*
 
 If true, it will fail if a value is not JSON
 
@@ -87,7 +87,7 @@ ___
 
 **● failOnlyWithErrorCodes**: *`number`[]*
 
-*Defined in [types.ts:57](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L57)*
+*Defined in [types.ts:57](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L57)*
 
 If given, it will fail only if error codes included in this are found. If other errors are found, it will still return pass===true
 
@@ -98,7 +98,7 @@ ___
 
 **● folder**: *`undefined` \| `string`*
 
-*Defined in [types.ts:17](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L17)*
+*Defined in [types.ts:17](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L17)*
 
 When using `tsConfigFilePath` that's in another folder specify it with this option.
 
@@ -109,7 +109,7 @@ ___
 
 **● printResult**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:47](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L47)*
+*Defined in [types.ts:47](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L47)*
 
 Prints the test results to stdout
 
@@ -120,7 +120,7 @@ ___
 
 **● printResultIfFail**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:42](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L42)*
+*Defined in [types.ts:42](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L42)*
 
 Prints the test results to stdout if it fails
 
@@ -131,7 +131,7 @@ ___
 
 **● tsConfigFilePath**: *`undefined` \| `string`*
 
-*Defined in [types.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L7)*
+*Defined in [types.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L7)*
 
 Use another tsconfig.json file than the default './tsconfig.json'. If so make sure you also set the property `folder` if it's in another folder
 
@@ -142,7 +142,7 @@ ___
 
 **● verifyProject**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:37](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a896bcc/src/types.ts#L37)*
+*Defined in [types.ts:37](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L37)*
 
 Besides making an initial file verification, it will also verify that the whole project compiles without errors. If not, the test will fail
 

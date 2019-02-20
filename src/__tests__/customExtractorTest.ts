@@ -43,7 +43,7 @@ const body = Type<any>()
 
     expect(project.getSourceFile(file)!.getText()).toContain(`const body = Type<any>({text: "any", prefix: __CE[0]})`)
     expect(project.getSourceFile(file)!.getText()).toContain(
-      `const __CE = ["interface I{\\n  i:number\\n}\\nclass C implements I {\\n    i:number=0\\n    m(){\\n      var foo=1\\n      while(true){\\n        var t0 = Date.now()\\n      }\\n    }\\n  }\\nconst var55 = 's'\\nconst body = Type<any>()"]`
+      `const __CE = ["interface I{\\n  i:number\\n}\\nclass C implements I {\\n    i:number=0\\n    m(){\\n      var foo=1\\n      while(true){\\n        var t0 = Date.now()\\n      }\\n    }\\n  }\\nconst var55 = 's'"]`
     )
     expect(project.getSourceFile(file)!.getText()).not.toContain(`\\nvar foo`)
   })

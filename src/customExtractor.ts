@@ -8,6 +8,8 @@ export function Type<T>(t?: PrefixedText): PrefixedText {
 const sourceFilesPrepend: { [name: string]: number } = {}
 export const customExtractor = (n: CallExpression, index: number, extractorPrependVariableName: string) => {
   if (typeof sourceFilesPrepend[n.getSourceFile().getFilePath()] === 'undefined') {
+    // rootDeclarations are considered for repeated names but not added to sourceFilesPrepend
+    const rootDeclarations: Node[] = []
     const declarations = n
       .getSourceFile()
       .getDescendants()
@@ -37,7 +39,7 @@ export const customExtractor = (n: CallExpression, index: number, extractorPrepe
             return ['describe', 'it', 'test'].includes(id.getText())
           }
         } else if (d.getParent() && TypeGuards.isSourceFile(d.getParent()!.getParent())) {
-          return true
+          rootDeclarations.push(d)
         }
       })
 
@@ -45,7 +47,7 @@ export const customExtractor = (n: CallExpression, index: number, extractorPrepe
     let sameNameLineNumber = 0
     declarations.some(d => {
       const dNames = getNames(d)
-      return !!declarations.find(
+      return !![...declarations, ...rootDeclarations].find(
         d2 =>
           d2 !== d &&
           !!getNames(d2).find(n => {

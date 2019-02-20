@@ -76,8 +76,17 @@ test('should reference types in the global scope', () => {
   expect(result.pass).toBe(true)
 })
 
+test('should support undefined value', () => {
+  const result = checkType(
+    value => `
+      var a: any = ${value}`,
+    undefined
+  )
+  expect(result.pass).toBe(true)
+})
+
 test('should allow intermediate function calls', () => {
-  let result = intermediateFunction(`number`, 1, { printResultIfFail: true })
+  let result = intermediateFunction(`number`, 1)
   expect(result.pass).toBe(true)
   result = intermediateFunction(`number`, [])
   expect(result.pass).toBe(false)

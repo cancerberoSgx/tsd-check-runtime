@@ -1,4 +1,4 @@
-import { Options, TypeRepresentation } from './types'
+import { Options, TypeRepresentation, PrefixedText } from './types'
 import { checkType } from './checkType'
 import { escapeValue, unique } from './util'
 import { number } from './typeTestUtil'
@@ -6,8 +6,8 @@ import { number } from './typeTestUtil'
 declare global {
   namespace jest {
     interface Matchers<R> {
-      toMatchType<T>(type: TypeRepresentation<T>, options?: Options & { exactly?: boolean }): R
-      toCompile<T>(options?: Options): R
+      toMatchType<R>(type: TypeRepresentation<R>, options?: Options & { exactly?: boolean }): R
+      toCompile(options?: Options): R
     }
   }
 }

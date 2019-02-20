@@ -81,10 +81,7 @@ export interface CompilationError {
   endLineNumber: number
 }
 
-export type TypeRepresentation<T> =
-  | string
-  | PrefixedText
-  | ((value: T | string, type?: TypeRepresentation<T>) => string)
+export type TypeRepresentation<T> = string | PrefixedText | ((value: T, type?: TypeRepresentation<T>) => string)
 
 export interface PrefixedText {
   text: string
