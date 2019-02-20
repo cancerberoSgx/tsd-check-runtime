@@ -75,3 +75,33 @@ export function getCallerFile(): { callerFile: string | undefined; allCallerFile
   // console.log('choose: ', f, 'all\n', c.map((c: any) => c.getFileName()))
   return { callerFile: f, allCallerFiles: c.map((c: any) => c.getFileName()).map(c => c) }
 }
+
+export type ArrayLiteral<T, L> = 0 extends L
+  ? []
+  : 1 extends L
+  ? [T]
+  : 2 extends L
+  ? [T, T]
+  : 3 extends L
+  ? [T, T, T]
+  : 4 extends L
+  ? [T, T, T, T]
+  : 5 extends L
+  ? [T, T, T, T, T]
+  : 6 extends L
+  ? [T, T, T, T, T, T]
+  : 7 extends L
+  ? [T, T, T, T, T, T, T]
+  : 8 extends L
+  ? [T, T, T, T, T, T, T, T]
+  : 9 extends L
+  ? [T, T, T, T, T, T, T, T, T]
+  : 10 extends L
+  ? [T, T, T, T, T, T, T, T, T, T]
+  : 11 extends L
+  ? [T, T, T, T, T, T, T, T, T, T, T]
+  : never
+
+  export type Tuple<TItem, TLength extends number> = [TItem, ...TItem[]] & {
+    length: TLength
+  }

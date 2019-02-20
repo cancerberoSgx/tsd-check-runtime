@@ -5,3 +5,5 @@ export function expectType<T>(typeOrFunction: TypeRepresentation<T>, value: T, o
   const result = checkTypeCore(typeOrFunction, value, options)
   return result.pass
 }
+
+

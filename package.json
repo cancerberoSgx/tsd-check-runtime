@@ -9,7 +9,7 @@
   "scripts": {
     "build": "tsc",
     "build-watch": "tsc -w",
-    "test": "npm run test-run && npm run test-standalone && npm run sample-project",
+    "test": "npx ts-node src/cli --moduleSpecifier '..' &&  npm run test-run && npm run test-standalone && npm run sample-project",
     "sample-project": "cd sample-project && ([ -d node_modules ] || npm i]) && npm run all",
     "test-run": " jest --config ./jest.config-spec.js ",
     "test-watch": "npm run test-run -- --watch",
@@ -36,7 +36,7 @@
   "dependencies": {
     "callsites": "^3.0.0",
     "javascript-stringify": "^2.0.0",
-    "typescript-poor-man-reflection": "0.0.2",
+    "typescript-poor-man-reflection": "0.0.3",
     "yargs-parser": "^13.0.0"
   },
   "keywords": [

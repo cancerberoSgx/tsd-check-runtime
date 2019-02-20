@@ -1,12 +1,15 @@
 import { Project, Diagnostic, ts, SourceFile } from 'ts-simple-ast'
-import { dirname, join, basename } from 'path'
-import { readFileSync } from 'fs'
+import { dirname, join, basename, extname } from 'path'
+import { readFileSync, existsSync } from 'fs'
 import { Options, Result, TypeRepresentation, PrefixedText } from './types'
 import { getCallerFile, formatDiagnostics, unique, escapeValue } from './util'
-
+/**
+ * Low level public API to check type of `value` match type `typeOrFunction` in the context of project `tsConfigFilePath`.
+ */
 export function checkType<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Result {
   return checkTypeCore(typeOrFunction, value, options)
 }
+
 /** @internal */
 export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Result {
   options.dontEscape = options.asString || options.dontEscape
@@ -30,10 +33,10 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
     }
   }
   const callerSourceFile = project.getSourceFile(callerFile)
-  if (!callerSourceFile) {
+  if (!callerSourceFile || !existsSync(callerFile)) {
     return {
       pass: false,
-      error: `Caller source must belong to ${tsConfigFilePath} project but ${callerFile} does not`,
+      error: `Caller source file must belong to "${tsConfigFilePath}" project and exist but "${callerFile}" does not`,
       callerFile,
       allCallerFiles
     }
@@ -43,7 +46,7 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
     if (d.length) {
       return {
         pass: false,
-        error: `Given TypeScript project cannot have compilation errors, fix them and try again. Errors: ${formatDiagnostics(
+        error: `Given TypeScript project cannot have compilation errors since option verifyProject was given. Fix them and try again. Errors: ${formatDiagnostics(
           d
         )}`,
         callerFile,
@@ -55,7 +58,7 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
     if (d.length) {
       return {
         pass: false,
-        error: `Caller TypeScript file cannot have compilation errors, fix them and try again. Errors: ${formatDiagnostics(
+        error: `Caller TypeScript file cannot have compilation errors, fix them and try again or pass option 'options.dontVerifyFile'. Errors: ${formatDiagnostics(
           d
         )}`,
         callerFile,
@@ -63,16 +66,22 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
       }
     }
   }
-  //TODO: verify it's contained in project
   const folderName = dirname(callerFile)
-  const fileName = `${options.folder || ''}${unique(basename(callerFile, '.ts'))}.ts` // TODO: callerFile could be tsx
+  const ext = extname(callerFile)
+  const fileName = `${options.folder || ''}${unique(basename(callerFile, ext))}.${ext}`
   const filePath = join(folderName, fileName)
   let testCode: string
-  const escapedValue = options.dontEscape ? value : escapeValue(value, options)
+  const v =
+    value &&
+    typeof ((value as any) as PrefixedText).__tsdCR_prefix === 'string' &&
+    typeof ((value as any) as PrefixedText).text === 'string'
+      ? ((value as any) as PrefixedText).text
+      : value
+  const escapedValue = options.dontEscape ? v : escapeValue(v, options)
   if (escapedValue === undefined) {
     return {
       pass: false,
-      error: `Value is not JSON and option enforceJsonValues was used`,
+      error: `Value is not valid JSON and option enforceJsonValues was used. Value: ${v}`,
       callerFile,
       filePath,
       allCallerFiles

@@ -2,7 +2,7 @@ import { Type, PrefixedText } from 'tsd-check-runtime';
 
 describe('Type', () => {
 
-  type UnionOf<T extends any[]> = T[number];
+  type UnionOf<T extends any[]> = T[number]
 
   it('should be able to reference types declared on any scope', () => {
     expect('a').not.toMatchType(Type<UnionOf<[1, false]>>())
@@ -30,27 +30,27 @@ describe('Type', () => {
       : 4 extends L
       ? [T, T, T, T]
       : never
-    expect(Type<Tuple<[{ a: string }], 2>>()).toMatchType<PrefixedText>(
+    expect(Type<Tuple<[{ a: string }], 2>>()).toMatchType(
       v => `
-      var var_a: ${v.text} = null as any as ${v.text}
+      var var_a: ${v} = null as any as ${v}
       var var_b = var_a[33] 
       `, { asString: true},
     )
-    expect(Type<Tuple<[{ a: string }], 2>>()).toMatchType<PrefixedText>(
+    expect(Type<Tuple<[{ a: string }], 2>>()).toMatchType(
       v => `
-      var var_a: ${v.text} = null as any as ${v.text}
+      var var_a: ${v} = null as any as ${v}
       var var_b = var_a[1]  
       `, { asString: true},
     )
-    expect(Type<ArrayLiteral<[{ a: string }], 2>>()).not.toMatchType<PrefixedText>(
+    expect(Type<ArrayLiteral<[{ a: string }], 2>>()).not.toMatchType(
       v => `
-      var var_a: ${v.text} = null as any as ${v.text}
+      var var_a: ${v} = null as any as ${v}
       var var_b = var_a[33] 
       `, { asString: true },
     )
-    expect(Type<ArrayLiteral<[{ a: string }], 2>>()).toMatchType<PrefixedText>(
+    expect(Type<ArrayLiteral<[{ a: string }], 2>>()).toMatchType(
       v => `
-      var var_a: ${v.text} = null as any as ${v.text}
+      var var_a: ${v} = null as any as ${v}
       var var_b = var_a[1] 
       `, { asString: true },
     )
