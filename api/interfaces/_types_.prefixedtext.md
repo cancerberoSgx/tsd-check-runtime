@@ -10,20 +10,20 @@
 
 ### Properties
 
-* [prefix](_types_.prefixedtext.md#prefix)
+* [__tsdCR_prefix](_types_.prefixedtext.md#__tsdcr_prefix)
 * [text](_types_.prefixedtext.md#text)
 
 ---
 
 ## Properties
 
-<a id="prefix"></a>
+<a id="__tsdcr_prefix"></a>
 
-###  prefix
+###  __tsdCR_prefix
 
-**● prefix**: *`string` \| `undefined`*
+**● __tsdCR_prefix**: *`string` \| `undefined`*
 
-*Defined in [types.ts:88](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L88)*
+*Defined in [types.ts:88](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L88)*
 
 ___
 <a id="text"></a>
@@ -32,7 +32,7 @@ ___
 
 **● text**: *`string`*
 
-*Defined in [types.ts:87](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L87)*
+*Defined in [types.ts:87](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L87)*
 
 ___
 

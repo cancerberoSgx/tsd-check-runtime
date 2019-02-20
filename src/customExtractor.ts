@@ -73,14 +73,14 @@ Type() could fail, rename these identifiers in order to use it!. Aborting.`)
     return {
       argument: `{text: ${JSON.stringify(
         `${n.getTypeArguments()[0].getText()}`
-      )}, prefix: ${extractorPrependVariableName}[${sourceFilesPrepend[n.getSourceFile().getFilePath()]}]}`,
+      )}, __tsdCR_prefix: ${extractorPrependVariableName}[${sourceFilesPrepend[n.getSourceFile().getFilePath()]}]}`,
       prependToFile: JSON.stringify(`${declarations.map(d => d.getText()).join('\n')}`)
     }
   } else {
     return {
       argument: `{text: ${JSON.stringify(
         `${n.getTypeArguments()[0].getText()}`
-      )}, prefix: ${extractorPrependVariableName}[${sourceFilesPrepend[n.getSourceFile().getFilePath()]}]}`
+      )}, __tsdCR_prefix: ${extractorPrependVariableName}[${sourceFilesPrepend[n.getSourceFile().getFilePath()]}]}`
     }
   }
 }

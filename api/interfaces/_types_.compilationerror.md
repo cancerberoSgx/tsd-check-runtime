@@ -31,7 +31,7 @@
 
 **● code**: *`number`*
 
-*Defined in [types.ts:73](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L73)*
+*Defined in [types.ts:73](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L73)*
 
 ___
 <a id="endcolumn"></a>
@@ -40,7 +40,7 @@ ___
 
 **● endColumn**: *`number`*
 
-*Defined in [types.ts:80](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L80)*
+*Defined in [types.ts:80](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L80)*
 
 ___
 <a id="endlinenumber"></a>
@@ -49,7 +49,7 @@ ___
 
 **● endLineNumber**: *`number`*
 
-*Defined in [types.ts:81](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L81)*
+*Defined in [types.ts:81](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L81)*
 
 ___
 <a id="file"></a>
@@ -58,7 +58,7 @@ ___
 
 **● file**: *`string` \| `undefined`*
 
-*Defined in [types.ts:74](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L74)*
+*Defined in [types.ts:74](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L74)*
 
 ___
 <a id="length"></a>
@@ -67,7 +67,7 @@ ___
 
 **● length**: *`number` \| `undefined`*
 
-*Defined in [types.ts:75](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L75)*
+*Defined in [types.ts:75](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L75)*
 
 ___
 <a id="linenumber"></a>
@@ -76,7 +76,7 @@ ___
 
 **● lineNumber**: *`number` \| `undefined`*
 
-*Defined in [types.ts:76](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L76)*
+*Defined in [types.ts:76](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L76)*
 
 ___
 <a id="message"></a>
@@ -85,7 +85,7 @@ ___
 
 **● message**: *`string`*
 
-*Defined in [types.ts:72](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L72)*
+*Defined in [types.ts:72](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L72)*
 
 ___
 <a id="start"></a>
@@ -94,7 +94,7 @@ ___
 
 **● start**: *`number` \| `undefined`*
 
-*Defined in [types.ts:77](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L77)*
+*Defined in [types.ts:77](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L77)*
 
 ___
 <a id="startcolumn"></a>
@@ -103,7 +103,7 @@ ___
 
 **● startColumn**: *`number`*
 
-*Defined in [types.ts:78](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L78)*
+*Defined in [types.ts:78](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L78)*
 
 ___
 <a id="startlinenumber"></a>
@@ -112,7 +112,7 @@ ___
 
 **● startLineNumber**: *`number`*
 
-*Defined in [types.ts:79](https://github.com/cancerberoSgx/tsd-check-runtime/blob/c5c5f36/src/types.ts#L79)*
+*Defined in [types.ts:79](https://github.com/cancerberoSgx/tsd-check-runtime/blob/0ea971a/src/types.ts#L79)*
 
 ___
 

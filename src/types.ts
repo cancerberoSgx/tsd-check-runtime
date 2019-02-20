@@ -85,5 +85,5 @@ export type TypeRepresentation<T> = string | PrefixedText | ((value: T, type?: T
 
 export interface PrefixedText {
   text: string
-  prefix: string | undefined
+  __tsdCR_prefix: string | undefined
 }

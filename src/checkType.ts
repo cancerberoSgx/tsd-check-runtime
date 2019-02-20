@@ -84,10 +84,11 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
     options.dontCreateTestCodeVariable = true
   }
 
-  let { text, prefix } = typeof typeOrFunction === 'string' ? { text: typeOrFunction, prefix: '' } : typeOrFunction
+  let { text, __tsdCR_prefix: prefix } =
+    typeof typeOrFunction === 'string' ? { text: typeOrFunction, __tsdCR_prefix: '' } : typeOrFunction
 
-  if (!prefix && value && typeof ((value as any) as PrefixedText).prefix === 'string') {
-    prefix = ((value as any) as PrefixedText).prefix
+  if (!prefix && value && typeof ((value as any) as PrefixedText).__tsdCR_prefix === 'string') {
+    prefix = ((value as any) as PrefixedText).__tsdCR_prefix
   }
 
   if (options.dontCreateTestCodeVariable) {
