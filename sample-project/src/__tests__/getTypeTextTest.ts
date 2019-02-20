@@ -1,20 +1,13 @@
-import { UnionOf } from '../union';
-import 'tsd-check-runtime'
-import TypeText from 'get-type-text'
-import { expectType } from 'tsd-check-runtime';
-import { spawn } from 'child_process';
-// TODO: is working for external project but not here. see util/getCallerFile)()
-describe('getTypeTextTest', ()=>{ 
-  it('should work jest matcher toMatchType', ()=>{
-    expect('a').not.toMatchType(TypeText<UnionOf<[1, false]>>('UnionOf<[1, false]>'))
-    expect('a').not.toMatchType(TypeText<UnionOf<[1, false]>>('UnionOf<[1, false]>'))
+import { Type } from 'tsd-check-runtime';
+import 'tsd-check-runtime';
+describe('getTypeTest', () => {
+  type UnionOf<T extends any[]> = T[number];
+  it('should work jest matcher toMatchType', () => {
+    expect('a').not.toMatchType(Type<UnionOf<[1, false]>>({"text":"UnionOf<[1, false]>","prefix":"type UnionOf<T extends any[]> = T[number];"}))
+    expect('a').not.toMatchType(Type<UnionOf<[1, false]>>({"text":"UnionOf<[1, false]>","prefix":"type UnionOf<T extends any[]> = T[number];"}))
 
     expect(2).not.toMatchType(`UnionOf<[1, false]>`)
-    expect(1).toMatchType(TypeText<UnionOf<[1, false]>>('UnionOf<[1, false]>'))
-  })
-  // it('should work without using jest matcher', ()=>{
-  //   expect(expectType(`UnionOf<[1, false]>`, 1)).toBe(true)
-  //   expect(expectType(`UnionOf<[1, false]>`, 2)).not.toBe(true)
-  //   expect(expectType(`UnionOf<[1, false]>`, 3)).not.toBe(true)
-  // })
-})
+    expect(1).toMatchType(Type<UnionOf<[1, false]>>({"text":"UnionOf<[1, false]>","prefix":"type UnionOf<T extends any[]> = T[number];"}) )
+    expect(1).toBe(1)
+  }) 
+}) 

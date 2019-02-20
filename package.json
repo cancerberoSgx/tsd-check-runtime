@@ -4,20 +4,21 @@
   "description": "TypeScript type declaration verification library. It's like tsd-check but works at runtime, actually compiling the code",
   "types": "dist/src/index.d.ts",
   "main": "dist/src/index.js",
+  "bin": "bin/tsd-check-runtime.js",
   "typings": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc",
     "build-watch": "tsc -w",
     "test": "npm run test-run && npm run test-standalone && npm run sample-project",
     "sample-project": "cd sample-project && ([ -d node_modules ] || npm i]) && npm run all",
-    "test-run": "npx get-type-text && jest --config ./jest.config-spec.js ",
+    "test-run": " jest --config ./jest.config-spec.js ",
     "test-watch": "npm run test-run -- --watch",
     "test-standalone": "npx ts-node -P ./tsconfig.json --files src/__tests__/testWithoutJest.ts -P",
     "prettier": " npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma all --end-of-line lf --prose-wrap preserve --print-width 120 --no-bracket-spacing  --jsx-bracket-same-line true \"src/**/*.ts*\"",
-    "all": "npm run clean && npm run prettier && npm run build && npm run test && npm run docs && npx get-type-text --cleanArguments",
+    "all": "npm run clean && npm run prettier && npm run build && npm run test && npm run docs",
     "docs": "npx typedoc src/types.ts src/checkType.ts src/expectType.ts --theme markdown --out api",
-    "clean": "rm -rf dist docs api && npx get-type-text --cleanArguments",
-    "prepare": "npx get-type-text --cleanArguments && npm run build"
+    "clean": "rm -rf dist docs api  ",
+    "prepare": "  npm run build"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
@@ -34,7 +35,9 @@
   },
   "dependencies": {
     "callsites": "^3.0.0",
-    "javascript-stringify": "^2.0.0"
+    "javascript-stringify": "^2.0.0",
+    "typescript-poor-man-reflection": "file:../typescript-poor-man-reflection",
+    "yargs-parser": "^13.0.0"
   },
   "keywords": [
     "JavaScript",
