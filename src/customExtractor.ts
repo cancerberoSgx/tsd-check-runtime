@@ -7,6 +7,10 @@ export function Type<T>(t?: PrefixedText): PrefixedText {
 
 const sourceFilesPrepend: { [name: string]: number } = {}
 export const customExtractor = (n: CallExpression, index: number, extractorPrependVariableName: string) => {
+
+  // console.log('typeof sourceFilesPrepend[n.getSourceFile().getFilePath()]', typeof sourceFilesPrepend[n.getSourceFile().getFilePath()])
+
+
   if (typeof sourceFilesPrepend[n.getSourceFile().getFilePath()] === 'undefined') {
     const declarations = n
       .getSourceFile()
@@ -41,30 +45,23 @@ export const customExtractor = (n: CallExpression, index: number, extractorPrepe
 
     let sameName = ''
     let sameNameLineNumber = 0
-    if (
-      declarations.find((d, i, a) => {
+      declarations.some(d => {
         const dNames = getNames(d)
-        if (
-          declarations.find(
+          return !!declarations.find(
             d2 =>
-              d2 !== d &&
-              !!getNames(d2).find(n => {
+            d2 !== d &&
+            !!getNames(d2).find(n => {
+              
                 if (dNames.includes(n)) {
                   sameName = `"${n}" found in "${d.getText()}" and in "${d2.getText()}"`
                   sameNameLineNumber = d.getStartLineNumber()
+                  return true
                 }
                 return false
               })
           )
-        ) {
-          return true
-        }
-        return false
       })
-    )
       if (sameName!) {
-        // TODO: for some reason I need to do this in order tests to throw the exception .... mystery
-        //       var aaa = sameName
         throw new Error(`Declarations with same name detected !
 File: "${n.getSourceFile().getFilePath()}:${sameNameLineNumber}"
 Names: ${sameName}
