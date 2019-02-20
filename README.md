@@ -81,6 +81,17 @@ expect(`var a = 1`).toCompile()
 expect(`v a r a = 1`).not.toCompile()
 ```
 
+`exactly` option for strict identical types:
+
+```ts
+interface A {}
+interface B extends A {b: number}
+var testVariable1 : B = {b: 8}
+...
+expect(testVariable1).toMatchType('A')
+expect(testVariable1).not.toMatchType('A', {exactly: true})
+``` 
+
 ### get-type-text to not hard-code types as strings
 
 [get-type-text](get-type-text) allows to get a type text at runtime by preprocessing the sources in the development workflow. Check there for details:

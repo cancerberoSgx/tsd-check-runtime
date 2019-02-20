@@ -8,6 +8,7 @@ var testVariable1 : B = {b: 8}
 
 
 describe('jestMatchers', () => {
+  
   describe('toMatchType', () => {
     it('should work jest matcher toMatchType', () => {
       expect('a').not.toMatchType(`UnionOf<[1, false]>`)
@@ -20,6 +21,7 @@ describe('jestMatchers', () => {
     })
    
   })
+
   describe('exactly', () => {
     it('should exactly match type if exactly is passed', () => {
       expect(testVariable1).toMatchType('B', {exactly: true})

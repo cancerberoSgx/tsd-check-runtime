@@ -59,3 +59,6 @@ function ${unique('__jestMatcher_toMatchType')}(){
 
 
 // \ntype ExactlyMatch<t1, t2> = t1 extends t2 ? t2 extends t1 ? true : never : never\nvar variableToMatchTypeExactly: ExactlyMatch<(value, type) => `\ntype ExactlyMatch<t1, t2> = t1 extends t2 ? t2 extends t1 ? true : never : never\nvar variableToMatchTypeExactly: ExactlyMatch<${type}, typeof ${value}> = true\n            `, typeof \"testVariable1\"> = true\n        
+
+
+        // ignore errors that are not 2322 ("Type X is not assignable to type Y")

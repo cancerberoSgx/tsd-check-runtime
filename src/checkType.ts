@@ -95,19 +95,23 @@ ${testCode}
 }`
   sourceFile = project.createSourceFile(filePath, code)
   d = sourceFile.getPreEmitDiagnostics()
+  const failErrors = formatDiagnostics(d)
+  const pass = d.length === 0 ? true : options.failOnlyWithErrorCodes ? 
+    !!failErrors.find(e=>options.failOnlyWithErrorCodes!.includes(e.code) ) : false
+  
   const r = {
-    pass: d.length > 0 ? false : true,
-    failErrors: formatDiagnostics(d),
+    pass,
+    failErrors ,
     code,
     testCode,
     callerFile,
     filePath,
     allCallerFiles,
   }
+
   if (options.printResult || (!r.pass && options.printResultIfFail)) {
     console.log(JSON.stringify(r, null, 2))
   }
-  // options.printResult && console.log(r);
 
   return r
 }
