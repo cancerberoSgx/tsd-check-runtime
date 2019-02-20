@@ -2,7 +2,6 @@ import { Type } from '..'
 import { checkCompile, expectCompile } from '../compile'
 import { Result } from '../types'
 import { ArrayLiteral, Tuple } from '../util'
-
 describe('compile', () => {
   describe('checkCompile', () => {
     interface I {

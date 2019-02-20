@@ -3,6 +3,7 @@ import { dirname, join, basename, extname } from 'path'
 import { readFileSync, existsSync } from 'fs'
 import { Options, Result, TypeRepresentation, PrefixedText } from './types'
 import { getCallerFile, formatDiagnostics, unique, escapeValue } from './util'
+
 /**
  * Low level public API to check type of `value` match type `typeOrFunction` in the context of project `tsConfigFilePath`.
  */

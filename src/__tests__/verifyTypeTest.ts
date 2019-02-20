@@ -3,7 +3,6 @@ import { KeysToTuple } from './assets/type2'
 import { If, IsString } from './assets/type1'
 import { intermediateFunction } from './assets/intermediaFunction'
 import { intermediateFunction2 } from './assets/intermediaFunction2'
-
 test("should not fail if type don't match", () => {
   const result = checkType('number', '1')
   expect(result.pass).toBe(false)

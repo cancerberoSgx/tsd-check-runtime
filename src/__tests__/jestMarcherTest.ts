@@ -1,6 +1,5 @@
 import '..'
 import { Type } from '..'
-
 type UnionOf<T extends any[]> = T[number]
 
 interface A {}

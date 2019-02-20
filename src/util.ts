@@ -1,6 +1,7 @@
 import { Diagnostic, ts } from 'ts-simple-ast'
 import { Options, CompilationError } from './types'
 import { stringify } from 'javascript-stringify'
+
 /** @internal */
 
 export function formatDiagnostics(d: Diagnostic[]): CompilationError[] {

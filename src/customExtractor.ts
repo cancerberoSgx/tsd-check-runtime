@@ -1,7 +1,9 @@
 import { CallExpression, TypeGuards, SyntaxKind, Node } from 'ts-simple-ast'
-import { PrefixedText } from './types'
-import { TsdCheckRuntimeCliOptions } from './customExtractorMain'
-import { ExtractorGetter } from 'typescript-poor-man-reflection'
+import { PrefixedText, TsdCheckRuntimeCliOptions } from './types'
+import { ExtractorGetter,  ExtractorDataMode } from 'typescript-poor-man-reflection'
+
+export const extractorDataMode: ExtractorDataMode= 'folderFile'
+
 
 /**
  * Use this function to extract a type text from TypeScript code as a string variable.
@@ -27,12 +29,7 @@ export function Type<T>(t?: PrefixedText): PrefixedText {
 
 const sourceFilesPrepend: { [name: string]: number } = {}
 
-export function customExtractor(
-  this: TsdCheckRuntimeCliOptions,
-  n: CallExpression,
-  index: number,
-  getter: ExtractorGetter
-) {
+export function customExtractor(this: TsdCheckRuntimeCliOptions, n: CallExpression, index: number, getter: ExtractorGetter) {
   if (typeof sourceFilesPrepend[n.getSourceFile().getFilePath()] === 'undefined') {
     // rootDeclarations are considered for repeated names but not added to sourceFilesPrepend
     const rootDeclarations: Node[] = []
@@ -96,25 +93,51 @@ File: "${n.getSourceFile().getFilePath()}:${sameNameLineNumber}"
 Names: ${sameName}
 Type() could fail, rename these identifiers in order to use it!`
       if (this.dontFailOnDuplicateVariable) {
-        console.warn(msg)
-      } else {
+        console.warn(msg);
+      }
+      else {
         throw new Error(msg + '. Aborting.')
       }
     }
 
     sourceFilesPrepend[n.getSourceFile().getFilePath()] = index
 
-    return {
-      argument: `{text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, __tsdCR_prefix: ${getter(
-        sourceFilesPrepend[n.getSourceFile().getFilePath()]
-      )}}`,
-      prependToFile: JSON.stringify(`${declarations.map(d => d.getText()).join('\n')}`)
+    if (extractorDataMode === 'prependVariable') {
+      return {
+        argument: `{text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, __tsdCR_prefix: ${
+          getter(sourceFilesPrepend[n.getSourceFile().getFilePath()])}}`,
+        prependToFile: JSON.stringify(`${declarations.map(d => d.getText()).join('\n')}`)
+      }
     }
+    else {
+      return {
+      //   argument: getter(sourceFilesPrepend[n.getSourceFile().getFilePath()]),
+      //   prependToFile: JSON.stringify(`${declarations.map(d => d.getText()).join('\n')}`)
+      // }
+      // {}, __tsdCR_prefix: ${
+        argument: getter(index),
+      // getter(sourceFilesPrepend[n.getSourceFile().getFilePath()])}}`,
+      prependToFile: `
+{
+  __tsdCR_prefix: ${JSON.stringify(declarations.map(d => d.getText()).join('\n'))},
+  text: ${JSON.stringify(n.getTypeArguments()[0].getText())}
+}`
+        // `{text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, __tsdCR_prefix: }`,
+      //     argument:  `{text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, __tsdCR_prefix: }`,
+      }
+    }
+
   } else {
-    return {
-      argument: `{text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, __tsdCR_prefix: ${getter(
-        sourceFilesPrepend[n.getSourceFile().getFilePath()]
-      )}}`
+    if (extractorDataMode === 'prependVariable') {
+      return {
+        argument: `{text: ${JSON.stringify(`${
+          n.getTypeArguments()[0].getText()}`)}, __tsdCR_prefix: ${
+          getter(sourceFilesPrepend[n.getSourceFile().getFilePath()])}}`
+      }
+    } else {
+     return {
+      argument: getter(index),
+     }
     }
   }
 }

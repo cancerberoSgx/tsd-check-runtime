@@ -1,14 +1,6 @@
 import { main } from 'typescript-poor-man-reflection'
-import { customExtractor } from './customExtractor'
-import { ReplaceProjectFunctionCallOptions } from 'typescript-poor-man-reflection/dist/src/types'
-
-export interface TsdCheckRuntimeCliOptions extends ReplaceProjectFunctionCallOptions {
-  /**
-   * Don't abort when two declarations with same name are detected, just warn.
-   */
-  dontFailOnDuplicateVariable?: boolean
-}
-
+import { customExtractor,  extractorDataMode } from './customExtractor'
+import { TsdCheckRuntimeCliOptions } from './types';
 const args = require('yargs-parser')(process.argv.slice(2)) as TsdCheckRuntimeCliOptions
 main({
   ...args,
@@ -17,8 +9,9 @@ main({
   },
   moduleSpecifier: 'tsx-check-runtime',
   extractorDataVariableName: '__CE',
-  extractorDataMode: 'folderFile',
+  extractorDataMode,
   extraOptionsHelp: {
     dontFailOnDuplicateVariable: "don't abort when two declarations with the same name are found, just warn."
   }
 })
+

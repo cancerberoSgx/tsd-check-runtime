@@ -1,3 +1,5 @@
+import { ReplaceProjectFunctionCallOptions } from 'typescript-poor-man-reflection';
+
 export interface Options {
   /**
    * Use another tsconfig.json file than the default './tsconfig.json'. If so make sure you also set the
@@ -124,4 +126,11 @@ export type TypeRepresentation<T> = string | PrefixedText | ((value: T, type?: T
 export interface PrefixedText {
   text: string
   __tsdCR_prefix: string | undefined
+}
+
+export interface TsdCheckRuntimeCliOptions extends ReplaceProjectFunctionCallOptions {
+  /**
+   * Don't abort when two declarations with same name are detected, just warn.
+   */
+  dontFailOnDuplicateVariable?: boolean
 }

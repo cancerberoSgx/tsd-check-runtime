@@ -1,5 +1,4 @@
 import { Type } from '..'
-
 describe('Type', () => {
   it('basic Type with toMatchType', () => {
     interface I {

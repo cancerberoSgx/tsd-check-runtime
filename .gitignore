@@ -1,3 +1,4 @@
 node_modules
 dist
 *.tgz
+__tsd_check_runtime__.ts

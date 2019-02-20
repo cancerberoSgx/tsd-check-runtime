@@ -1,6 +1,5 @@
 import { checkType, Type, expectType, expectCompile } from '..'
 import { ok } from 'assert'
-
 type UnionOf<T extends any[]> = T[number]
 
 try {

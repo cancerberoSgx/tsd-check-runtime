@@ -3,7 +3,6 @@ import { replaceFileFunctionCall } from 'typescript-poor-man-reflection'
 import '..'
 import { customExtractor } from '../customExtractor'
 import { unique } from '../util'
-
 describe('Type() and custom extractor', () => {
   it('should build custom extractor for extracting all declarations that add names in current source file global or describe(), it(), test() closures', () => {
     const project = new Project()
