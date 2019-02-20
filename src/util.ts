@@ -102,6 +102,6 @@ export type ArrayLiteral<T, L> = 0 extends L
   ? [T, T, T, T, T, T, T, T, T, T, T]
   : never
 
-  export type Tuple<TItem, TLength extends number> = [TItem, ...TItem[]] & {
-    length: TLength
-  }
+export type Tuple<TItem, TLength extends number> = [TItem, ...TItem[]] & {
+  length: TLength
+}

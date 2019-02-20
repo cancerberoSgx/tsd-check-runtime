@@ -38,7 +38,10 @@ export const customExtractor = (n: CallExpression, index: number, extractorPrepe
           if (id) {
             return ['describe', 'it', 'test'].includes(id.getText())
           }
-        } else if (d.getParent() && TypeGuards.isSourceFile(d.getParent()!.getParent())) {
+        } else if (
+          (d.getParent() && TypeGuards.isSourceFile(d.getParent()!)) ||
+          (d.getParent()!.getParent() && TypeGuards.isSourceFile(d.getParent()!.getParent()))
+        ) {
           rootDeclarations.push(d)
         }
       })

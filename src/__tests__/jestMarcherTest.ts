@@ -1,4 +1,5 @@
 import '..'
+import { Type } from '..'
 
 type UnionOf<T extends any[]> = T[number]
 
@@ -32,8 +33,20 @@ describe('jestMatchers', () => {
 
   describe('toCompile', () => {
     it('toCompile', () => {
-      expect(`var a = 1`).toCompile()
-      expect(`v a r a = 1`).not.toCompile()
+      expect(() => `var a = 1`).toCompile()
+      expect(() => `v a r a = 1`).not.toCompile()
+      expect((n: string) => `var a: ${n} = 1`).toCompile(Type<number>())
+      expect((n: string) => `var a: ${n} = 1`).not.toCompile(Type<string>())
+      interface II {
+        foo: Date[][]
+        m(): string[]
+      }
+      expect(
+        (II: string, mReturnType: string) => `var a: ${II} = {foo: [], m(){return null as any as ${mReturnType}}}`
+      ).toCompile(Type<II>(), Type<string[]>())
+      expect(
+        (II: string, mReturnType: string) => `var a: ${II} = {foo: [], m(){return null as any as ${mReturnType}}}`
+      ).not.toCompile(Type<II>(), Type<number[]>())
     })
   })
 })

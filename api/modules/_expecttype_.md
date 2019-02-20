@@ -18,7 +18,7 @@
 
 ▸ **expectType**<`T`>(typeOrFunction: *[TypeRepresentation](_types_.md#typerepresentation)<`T`>*, value: *`T`*, options?: *[Options](../interfaces/_types_.options.md)*): `boolean`
 
-*Defined in [expectType.ts:4](https://github.com/cancerberoSgx/tsd-check-runtime/blob/f08f16b/src/expectType.ts#L4)*
+*Defined in [expectType.ts:4](https://github.com/cancerberoSgx/tsd-check-runtime/blob/26cd25a/src/expectType.ts#L4)*
 
 **Type parameters:**
 

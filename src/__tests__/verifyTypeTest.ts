@@ -30,7 +30,6 @@ test('can reference types from other files', () => {
       var b = Math.random()>0.5 ? 1 : '1'
       var a: If<IsString<typeof b>, 'greater than 0.5', 'lower than 0.5'> = ${value}`,
     'greater than 0.5'
-    // {printResultIfFail: true},
   )
   expect(result2.pass).toBe(true)
 })

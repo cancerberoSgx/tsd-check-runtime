@@ -1,7 +1,7 @@
 import { UnionOf } from '../union';
 import 'tsd-check-runtime'
-import { expectType } from 'tsd-check-runtime';
-// TODO: is working for external project but not here. see util/getCallerFile)()
+import { expectType } from 'tsd-check-runtime'
+
 describe('ValueOfStringKeyInArray', ()=>{ 
   let c: UnionOf<[1, false]> ;
   it('should work jest matcher toMatchType', ()=>{

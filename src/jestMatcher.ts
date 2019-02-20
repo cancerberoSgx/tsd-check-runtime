@@ -2,15 +2,25 @@ import { Options, TypeRepresentation, PrefixedText } from './types'
 import { checkType } from './checkType'
 import { escapeValue, unique } from './util'
 import { number } from './typeTestUtil'
+import { checkCompile } from './compile'
 
 declare global {
   namespace jest {
     interface Matchers<R> {
       toMatchType<R>(type: TypeRepresentation<R>, options?: Options & { exactly?: boolean }): R
-      toCompile(options?: Options): R
     }
   }
 }
+
+declare global {
+  namespace jest {
+    interface Matchers<R> {
+      toCompile<R>(options: Options, ...types: PrefixedText[]): R
+      toCompile<R>(...types: PrefixedText[]): R
+    }
+  }
+}
+
 if (typeof expect !== 'undefined') {
   expect.extend({
     toMatchType<T>(value: T, type: TypeRepresentation<T>, options: Options & { exactly?: boolean } = {}) {
@@ -44,16 +54,25 @@ function ${unique('__jestMatcher_toMatchType')}(){
       }
     },
 
-    toCompile<T>(value: T, options: Options = { asString: true, dontEscape: true }) {
-      options = { ...options, ...{ asString: true, dontEscape: true } }
-      const r = checkType(() => value + '', '', options)
+    toCompile(value: (...values: string[]) => string, ...optionsOrTypes: (Options | PrefixedText)[]) {
+      let { options, types } = optionsOrTypes.length
+        ? typeof ((optionsOrTypes[0] as any) as PrefixedText).__tsdCR_prefix === 'string'
+          ? { options: {} as Options, types: optionsOrTypes as PrefixedText[] }
+          : {
+              options: optionsOrTypes[0] as Options,
+              types: optionsOrTypes.slice(1, optionsOrTypes.length) as PrefixedText[]
+            }
+        : { options: {} as Options, types: [] as PrefixedText[] }
+
+      const r = checkCompile(options, value, ...types)
+
       return {
         pass: r.pass,
         message: () =>
           `expect value "${value}" ${this.isNot ? 'not ' : ''}to compile but ${
             this.isNot
               ? 'did'
-              : `[${
+              : `thrown [${
                   r.failErrors
                     ? r.failErrors.map(r => `(${r.code}) ${r.message}`).join('\n')
                     : r.error
