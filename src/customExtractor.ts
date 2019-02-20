@@ -7,7 +7,6 @@ export function Type<T>(t?: PrefixedText): PrefixedText {
 
 const sourceFilesPrepend: { [name: string]: number } = {}
 export const customExtractor = (n: CallExpression, index: number, extractorPrependVariableName: string) => {
-
   if (typeof sourceFilesPrepend[n.getSourceFile().getFilePath()] === 'undefined') {
     const declarations = n
       .getSourceFile()

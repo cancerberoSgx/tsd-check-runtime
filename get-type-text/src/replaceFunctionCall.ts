@@ -15,7 +15,6 @@ export function replaceFunctionCall(
   callExpressions.forEach(c => {
     if (c.getArguments().length === 0 && !cleanArguments) {
       // first time
-      //TODO: verify type argument 0 exists and has correct type
       const r = quote(c.getTypeArguments()[0]!.getText())
       c.addArgument(r)
       replaced.push({file: sourceFile.getFilePath(), replacement: r, firstTime: true})
@@ -36,16 +35,6 @@ export function replaceFunctionCall(
   })
   return replaced
 }
-
-// function getTypeText(c: CallExpression) {
-//   //TODO: verify type argument exist
-
-// }
-
-// function getArgumentText(c: CallExpression) {
-//   const text = getTypeText(c)
-//   return text
-// }
 
 function extractCallExpressionsFrom(sourceFile: SourceFile, moduleSpecifier: string, name: string) {
   const ids = sourceFile
