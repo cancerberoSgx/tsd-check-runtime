@@ -25,7 +25,7 @@
 
 **Ƭ TypeRepresentation**: *`string` \| [PrefixedText](../interfaces/_types_.prefixedtext.md) \| `function`*
 
-*Defined in [types.ts:122](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a00c97c/src/types.ts#L122)*
+*Defined in [types.ts:122](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/types.ts#L122)*
 
 ___
 

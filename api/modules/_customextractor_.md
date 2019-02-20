@@ -24,7 +24,7 @@
 
 **● sourceFilesPrepend**: *`object`*
 
-*Defined in [customExtractor.ts:26](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a00c97c/src/customExtractor.ts#L26)*
+*Defined in [customExtractor.ts:28](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/customExtractor.ts#L28)*
 
 #### Type declaration
 
@@ -40,7 +40,7 @@ ___
 
 ▸ **Type**<`T`>(t?: *[PrefixedText](../interfaces/_types_.prefixedtext.md)*): [PrefixedText](../interfaces/_types_.prefixedtext.md)
 
-*Defined in [customExtractor.ts:22](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a00c97c/src/customExtractor.ts#L22)*
+*Defined in [customExtractor.ts:24](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/customExtractor.ts#L24)*
 
 Use this function to extract a type text from TypeScript code as a string variable.
 
@@ -72,19 +72,20 @@ npx tsd-check-runtime --clean
 ___
 <a id="customextractor"></a>
 
-### `<Const>` customExtractor
+###  customExtractor
 
-▸ **customExtractor**(n: *`CallExpression`*, index: *`number`*, extractorPrependVariableName: *`string`*): `object` \| `object`
+▸ **customExtractor**(this: *[TsdCheckRuntimeCliOptions](../interfaces/_customextractormain_.tsdcheckruntimeclioptions.md)*, n: *`CallExpression`*, index: *`number`*, getter: *`ExtractorGetter`*): `object` \| `object`
 
-*Defined in [customExtractor.ts:28](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a00c97c/src/customExtractor.ts#L28)*
+*Defined in [customExtractor.ts:30](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/customExtractor.ts#L30)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
+| this | [TsdCheckRuntimeCliOptions](../interfaces/_customextractormain_.tsdcheckruntimeclioptions.md) |
 | n | `CallExpression` |
 | index | `number` |
-| extractorPrependVariableName | `string` |
+| getter | `ExtractorGetter` |
 
 **Returns:** `object` \| `object`
 
@@ -95,7 +96,7 @@ ___
 
 ▸ **getNames**(n: *`Node`*): `string`[]
 
-*Defined in [customExtractor.ts:110](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a00c97c/src/customExtractor.ts#L110)*
+*Defined in [customExtractor.ts:122](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/customExtractor.ts#L122)*
 
 **Parameters:**
 

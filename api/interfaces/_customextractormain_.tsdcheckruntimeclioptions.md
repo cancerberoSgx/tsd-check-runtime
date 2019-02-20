@@ -14,7 +14,11 @@
 
 * [clean](_customextractormain_.tsdcheckruntimeclioptions.md#clean)
 * [debug](_customextractormain_.tsdcheckruntimeclioptions.md#debug)
-* [extractorPrependVariableName](_customextractormain_.tsdcheckruntimeclioptions.md#extractorprependvariablename)
+* [dontFailOnDuplicateVariable](_customextractormain_.tsdcheckruntimeclioptions.md#dontfailonduplicatevariable)
+* [externalFolderFileName](_customextractormain_.tsdcheckruntimeclioptions.md#externalfolderfilename)
+* [extraOptionsHelp](_customextractormain_.tsdcheckruntimeclioptions.md#extraoptionshelp)
+* [extractorDataMode](_customextractormain_.tsdcheckruntimeclioptions.md#extractordatamode)
+* [extractorDataVariableName](_customextractormain_.tsdcheckruntimeclioptions.md#extractordatavariablename)
 * [extracts](_customextractormain_.tsdcheckruntimeclioptions.md#extracts)
 * [help](_customextractormain_.tsdcheckruntimeclioptions.md#help)
 * [moduleSpecifier](_customextractormain_.tsdcheckruntimeclioptions.md#modulespecifier)
@@ -33,7 +37,7 @@
 
 *Inherited from ReplaceFileFunctionCallOptions.clean*
 
-*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:44*
+*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:51*
 
 If true the tool will clean all arguments in matched function call expressions
 
@@ -51,15 +55,69 @@ ___
 Prints details in stdout, default is false
 
 ___
-<a id="extractorprependvariablename"></a>
+<a id="dontfailonduplicatevariable"></a>
 
-### `<Optional>` extractorPrependVariableName
+### `<Optional>` dontFailOnDuplicateVariable
 
-**● extractorPrependVariableName**: *`undefined` \| `string`*
+**● dontFailOnDuplicateVariable**: *`undefined` \| `false` \| `true`*
 
-*Inherited from ReplaceFileFunctionCallOptions.extractorPrependVariableName*
+*Defined in [customExtractorMain.ts:9](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/customExtractorMain.ts#L9)*
 
-*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:60*
+Don't abort when two declarations with same name are detected, just warn.
+
+___
+<a id="externalfolderfilename"></a>
+
+### `<Optional>` externalFolderFileName
+
+**● externalFolderFileName**: *`undefined` \| `string`*
+
+*Inherited from ReplaceFileFunctionCallOptions.externalFolderFileName*
+
+*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:85*
+
+The name of the file to store extractor data in case `extractorDataMode` is `'externalFolderFile'`. By default it will be named `__tsd_check_runtime__.ts`. See \[\['externalFolderFile'\]\]
+
+___
+<a id="extraoptionshelp"></a>
+
+### `<Optional>` extraOptionsHelp
+
+**● extraOptionsHelp**: *`undefined` \| `object`*
+
+*Inherited from ReplaceProjectFunctionCallOptions.extraOptionsHelp*
+
+*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:37*
+
+for third party using it programmatically, they can declare new CLI options and their descriptions so they appear with --help
+
+___
+<a id="extractordatamode"></a>
+
+### `<Optional>` extractorDataMode
+
+**● extractorDataMode**: *"prependVariable" \| "externalFolderFile"*
+
+*Inherited from ReplaceFileFunctionCallOptions.extractorDataMode*
+
+*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:80*
+
+Mode in which the extractor data is stored in the source code.
+
+If `prependVariable`, an array variable will be prepended at the top of the same file and function calls will access the array directly.
+
+If `externalFolderFile`, the data is stored in a separate file that exports a function to access to array. An import declaration will be added to the file and function calls will use the imported function to access the array. There will be one of these files per folder with the name given by option `externalFolderFileName` that will contain the data of all this folder's immediate children.
+
+___
+<a id="extractordatavariablename"></a>
+
+### `<Optional>` extractorDataVariableName
+
+**● extractorDataVariableName**: *`undefined` \| `string`*
+
+*Inherited from ReplaceFileFunctionCallOptions.extractorDataVariableName*
+
+*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:68*
 
 In case custom `extracts` return `prependToFile` property, they also can configure the name of the array variable prepended in the file that contains all values. By default it's `__extractor_prepend__`.
 
@@ -72,7 +130,7 @@ ___
 
 *Inherited from ReplaceFileFunctionCallOptions.extracts*
 
-*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:48*
+*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:55*
 
 Custom extracts declaring custom function names
 
@@ -98,7 +156,7 @@ ___
 
 *Inherited from ReplaceFileFunctionCallOptions.moduleSpecifier*
 
-*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:56*
+*Defined in /home/sg/git/tsd-check-runtime/node_modules/typescript-poor-man-reflection/dist/src/types.d.ts:63*
 
 Custom name of the import module specifier from which the target function in the function call expression needs to be imported in order to perform the arguments modification. Default value: `typescript-poor-man-reflection`.
 

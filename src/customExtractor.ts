@@ -1,5 +1,7 @@
 import { CallExpression, TypeGuards, SyntaxKind, Node } from 'ts-simple-ast'
 import { PrefixedText } from './types'
+import { TsdCheckRuntimeCliOptions } from './customExtractorMain'
+import { ExtractorGetter } from 'typescript-poor-man-reflection'
 
 /**
  * Use this function to extract a type text from TypeScript code as a string variable.
@@ -25,7 +27,12 @@ export function Type<T>(t?: PrefixedText): PrefixedText {
 
 const sourceFilesPrepend: { [name: string]: number } = {}
 
-export const customExtractor = (n: CallExpression, index: number, extractorPrependVariableName: string) => {
+export function customExtractor(
+  this: TsdCheckRuntimeCliOptions,
+  n: CallExpression,
+  index: number,
+  getter: ExtractorGetter
+) {
   if (typeof sourceFilesPrepend[n.getSourceFile().getFilePath()] === 'undefined') {
     // rootDeclarations are considered for repeated names but not added to sourceFilesPrepend
     const rootDeclarations: Node[] = []
@@ -84,25 +91,30 @@ export const customExtractor = (n: CallExpression, index: number, extractorPrepe
     })
 
     if (sameName!) {
-      throw new Error(`Declarations with same name detected !
+      const msg = `Declarations with same name detected !
 File: "${n.getSourceFile().getFilePath()}:${sameNameLineNumber}"
 Names: ${sameName}
-Type() could fail, rename these identifiers in order to use it!. Aborting.`)
+Type() could fail, rename these identifiers in order to use it!`
+      if (this.dontFailOnDuplicateVariable) {
+        console.warn(msg)
+      } else {
+        throw new Error(msg + '. Aborting.')
+      }
     }
 
     sourceFilesPrepend[n.getSourceFile().getFilePath()] = index
 
     return {
-      argument: `{text: ${JSON.stringify(
-        `${n.getTypeArguments()[0].getText()}`
-      )}, __tsdCR_prefix: ${extractorPrependVariableName}[${sourceFilesPrepend[n.getSourceFile().getFilePath()]}]}`,
+      argument: `{text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, __tsdCR_prefix: ${getter(
+        sourceFilesPrepend[n.getSourceFile().getFilePath()]
+      )}}`,
       prependToFile: JSON.stringify(`${declarations.map(d => d.getText()).join('\n')}`)
     }
   } else {
     return {
-      argument: `{text: ${JSON.stringify(
-        `${n.getTypeArguments()[0].getText()}`
-      )}, __tsdCR_prefix: ${extractorPrependVariableName}[${sourceFilesPrepend[n.getSourceFile().getFilePath()]}]}`
+      argument: `{text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, __tsdCR_prefix: ${getter(
+        sourceFilesPrepend[n.getSourceFile().getFilePath()]
+      )}}`
     }
   }
 }

@@ -22,7 +22,7 @@
 
 **● args**: *[TsdCheckRuntimeCliOptions](../interfaces/_customextractormain_.tsdcheckruntimeclioptions.md)* =  require('yargs-parser')(process.argv.slice(2)) as TsdCheckRuntimeCliOptions
 
-*Defined in [customExtractorMain.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a00c97c/src/customExtractorMain.ts#L7)*
+*Defined in [customExtractorMain.ts:12](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/customExtractorMain.ts#L12)*
 
 ___
 

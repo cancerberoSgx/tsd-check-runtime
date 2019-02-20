@@ -38,7 +38,7 @@
   "dependencies": {
     "callsites": "^3.0.0",
     "javascript-stringify": "^2.0.0",
-    "typescript-poor-man-reflection": "0.0.4",
+    "typescript-poor-man-reflection": "file:../typescript-poor-man-reflection",
     "yargs-parser": "^13.0.0"
   },
   "keywords": [

@@ -21,7 +21,7 @@
 
 ▸ **boolean**(): `boolean`
 
-*Defined in [typeTestUtil.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a00c97c/src/typeTestUtil.ts#L7)*
+*Defined in [typeTestUtil.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/typeTestUtil.ts#L7)*
 
 **Returns:** `boolean`
 
@@ -32,7 +32,7 @@ ___
 
 ▸ **number**(): `number`
 
-*Defined in [typeTestUtil.ts:1](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a00c97c/src/typeTestUtil.ts#L1)*
+*Defined in [typeTestUtil.ts:1](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/typeTestUtil.ts#L1)*
 
 **Returns:** `number`
 
@@ -43,7 +43,7 @@ ___
 
 ▸ **string**(): `string`
 
-*Defined in [typeTestUtil.ts:4](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a00c97c/src/typeTestUtil.ts#L4)*
+*Defined in [typeTestUtil.ts:4](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/typeTestUtil.ts#L4)*
 
 **Returns:** `string`
 
@@ -54,7 +54,7 @@ ___
 
 ▸ **union**<`T1`,`T2`,`T3`,`T4`>(t1?: *[T1]()*, t2?: *[T2]()*, t3?: *[T3]()*, t4?: *[T4]()*): `undefined` \| `T1` \| `T2` \| `T3`
 
-*Defined in [typeTestUtil.ts:13](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a00c97c/src/typeTestUtil.ts#L13)*
+*Defined in [typeTestUtil.ts:13](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/typeTestUtil.ts#L13)*
 
 union(1,'f', false) === 1\|'f','false
 

@@ -38,7 +38,7 @@ const body = Type<any>()
       extracts: {
         Type: customExtractor
       },
-      extractorPrependVariableName: '__CE'
+      extractorDataVariableName: '__CE'
     })
 
     expect(project.getSourceFile(file)!.getText()).toContain(
