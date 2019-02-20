@@ -102,7 +102,7 @@ ${testCode}
   d = sourceFile.getPreEmitDiagnostics()
   const failErrors = formatDiagnostics(d)
   const pass = d.length === 0 ? true : options.failOnlyWithErrorCodes ?
-    !!failErrors.find(e => options.failOnlyWithErrorCodes!.includes(e.code)) : false
+    !failErrors.find(e => options.failOnlyWithErrorCodes!.includes(e.code)) : false
 
   const r = {
     pass,

@@ -35,7 +35,7 @@ function ${unique('__jestMatcher_toMatchType')}(){
           } but ${
           this.isNot
             ? 'did'
-            : `[${r.failErrors ? r.failErrors.map(r => r.message).join('\n') : r.error ? r.error : 'UNKNOWN'}]`
+            : `[${r.failErrors ? r.failErrors.map(r => `(${r.code}) ${r.message}`).join('\n') : r.error ? r.error : 'UNKNOWN'}]`
           }`,
       }
     },
@@ -49,7 +49,7 @@ function ${unique('__jestMatcher_toMatchType')}(){
           `expect value "${value}" ${this.isNot ? 'not ' : ''}to compile but ${
           this.isNot
             ? 'did'
-            : `[${r.failErrors ? r.failErrors.map(r => r.message).join('\n') : r.error ? r.error : 'UNKNOWN'}]`
+            : `[${r.failErrors ? r.failErrors.map(r => `(${r.code}) ${r.message}`).join('\n') : r.error ? r.error : 'UNKNOWN'}]`
           }`,
       }
     },
