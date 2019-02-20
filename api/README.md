@@ -84,20 +84,51 @@ expect(`var a = 1`).toCompile()
 expect(`v a r a = 1`).not.toCompile()
 ```
 
-### get-type-text to not hard-code types as strings
-
-[get-type-text](get-type-text) allows to get a type text at runtime by preprocessing the sources in the development workflow. Check there for details:
+`exactly` option for strict identical types:
 
 ```ts
-import 'tsd-check-runtime'
-import TypeText from 'get-type-text'
-type UnionOf<T extends any[]> = T[number]
-test('should work with get-type-text', () => {
-  expect('a').not.toMatchType(TypeText<UnionOf<[1, false]>>())
-  expect(2).not.toMatchType(TypeText<UnionOf<[1, false]>>())
-  expect(1).toMatchType(TypeText<UnionOf<[1, false]>>())
-})
+interface A {}
+interface B extends A {b: number}
+var testVariable1 : B = {b: 8}
+...
+expect(testVariable1).toMatchType('A')
+expect(testVariable1).not.toMatchType('A', {exactly: true})
 ```
+
+### Use `Type` to extract type text at compile time
+
+[get-type-text](get-type-text) allows to get a type text at runtime by preprocessing the sources in the development workflow. Based on [typescript-poor-man-reflection](https://github.com/cancerberoSgx/typescript-poor-man-reflection).
+
+```ts
+import { Type } from 'tsd-check-runtime';
+
+describe('Type', () => {
+
+  type UnionOf<T extends any[]> = T[number];
+
+  it('should be able to reference types declared on any scope', () => {
+    expect('a').not.toMatchType(Type<UnionOf<[1, false]>>())
+    expect(2).not.toMatchType(Type<UnionOf<[1, false]>>())
+    expect(1).toMatchType(Type<UnionOf<[1, false]>>() )
+
+    interface A{a: number}
+    interface B extends A {b:string}
+    var b: B = {a: 1, b: 's'}
+    type Identical<t1, t2> = t1 extends t2 ? t2 extends t1 ? true : never : never
+    type Extends<t1, t2> = t1 extends t2 ?  true : never  
+
+    expect(true).not.toMatchType(Type<Identical<typeof b, A>>())
+    expect(true).toMatchType(Type<Extends<typeof b, A>>())
+  }) 
+
+}) 
+
+```
+
+For it to work you need to execute `npx tsd-check-runtime` before `tsc` or `npm test`. This will modify your sources!. For undo the modifications execute `npx tsd-check-runtime --clean`. Advantages:
+
+*   types are not hard-coded as strings so tests won't get outdated on refactors
+*   you can reference types or variables on any scope of the file, not only globals
 
 ### API
 

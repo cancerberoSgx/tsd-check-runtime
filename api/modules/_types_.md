@@ -8,6 +8,7 @@
 
 * [CompilationError](../interfaces/_types_.compilationerror.md)
 * [Options](../interfaces/_types_.options.md)
+* [PrefixedText](../interfaces/_types_.prefixedtext.md)
 * [Result](../interfaces/_types_.result.md)
 
 ### Type aliases
@@ -22,9 +23,9 @@
 
 ###  TypeRepresentation
 
-**Ƭ TypeRepresentation**: *`string` \| `function`*
+**Ƭ TypeRepresentation**: *`string` \| [PrefixedText](../interfaces/_types_.prefixedtext.md) \| `function`*
 
-*Defined in [types.ts:38](https://github.com/cancerberoSgx/tsd-check-runtime/blob/463b5ee/src/types.ts#L38)*
+*Defined in [types.ts:79](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L79)*
 
 ___
 

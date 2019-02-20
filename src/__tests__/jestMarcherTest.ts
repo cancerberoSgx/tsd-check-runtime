@@ -3,12 +3,12 @@ import '..'
 type UnionOf<T extends any[]> = T[number]
 
 interface A {}
-interface B extends A {b: number}
-var testVariable1 : B = {b: 8}
-
+interface B extends A {
+  b: number
+}
+var testVariable1: B = {b: 8}
 
 describe('jestMatchers', () => {
-  
   describe('toMatchType', () => {
     it('should work jest matcher toMatchType', () => {
       expect('a').not.toMatchType(`UnionOf<[1, false]>`)
@@ -19,7 +19,6 @@ describe('jestMatchers', () => {
       expect(1).toMatchType('number')
       expect(1).not.toMatchType('string')
     })
-   
   })
 
   describe('exactly', () => {

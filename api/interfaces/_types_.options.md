@@ -11,9 +11,11 @@
 ### Properties
 
 * [asString](_types_.options.md#asstring)
+* [dontCreateTestCodeVariable](_types_.options.md#dontcreatetestcodevariable)
 * [dontEscape](_types_.options.md#dontescape)
 * [dontVerifyFile](_types_.options.md#dontverifyfile)
 * [enforceJsonValues](_types_.options.md#enforcejsonvalues)
+* [failOnlyWithErrorCodes](_types_.options.md#failonlywitherrorcodes)
 * [folder](_types_.options.md#folder)
 * [printResult](_types_.options.md#printresult)
 * [printResultIfFail](_types_.options.md#printresultiffail)
@@ -30,9 +32,20 @@
 
 **● asString**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:11](https://github.com/cancerberoSgx/tsd-check-runtime/blob/463b5ee/src/types.ts#L11)*
+*Defined in [types.ts:30](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L30)*
 
-in cases where the value is an object that knows how to print itself and you don't want to be processed by Stringify - force it to be rendered as string . Implies `dontScape`
+In cases where the value is an object that knows how to print itself and you don't want to be processed by Stringify - force it to be rendered as string . Implies `dontScape`
+
+___
+<a id="dontcreatetestcodevariable"></a>
+
+### `<Optional>` dontCreateTestCodeVariable
+
+**● dontCreateTestCodeVariable**: *`undefined` \| `false` \| `true`*
+
+*Defined in [types.ts:50](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L50)*
+
+If the type is a string and not a function, then it will not create the dummy variable in the test code
 
 ___
 <a id="dontescape"></a>
@@ -41,9 +54,9 @@ ___
 
 **● dontEscape**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:9](https://github.com/cancerberoSgx/tsd-check-runtime/blob/463b5ee/src/types.ts#L9)*
+*Defined in [types.ts:25](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L25)*
 
-pass true if you are already passing a quoted value. By default value is escaped in the output
+Pass true if you are already passing a quoted value. By default value is escaped in the output
 
 ___
 <a id="dontverifyfile"></a>
@@ -52,7 +65,9 @@ ___
 
 **● dontVerifyFile**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/463b5ee/src/types.ts#L7)*
+*Defined in [types.ts:20](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L20)*
+
+Won't make the initial verification of the file. Could be a bit faster, but if the file already has compilation errors the test will always fail
 
 ___
 <a id="enforcejsonvalues"></a>
@@ -61,7 +76,20 @@ ___
 
 **● enforceJsonValues**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:4](https://github.com/cancerberoSgx/tsd-check-runtime/blob/463b5ee/src/types.ts#L4)*
+*Defined in [types.ts:10](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L10)*
+
+If true, it will fail if a value is not JSON
+
+___
+<a id="failonlywitherrorcodes"></a>
+
+### `<Optional>` failOnlyWithErrorCodes
+
+**● failOnlyWithErrorCodes**: *`number`[]*
+
+*Defined in [types.ts:55](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L55)*
+
+If given, it will fail only if error codes included in this are found. If other errors are found, it will still return pass===true
 
 ___
 <a id="folder"></a>
@@ -70,7 +98,7 @@ ___
 
 **● folder**: *`undefined` \| `string`*
 
-*Defined in [types.ts:6](https://github.com/cancerberoSgx/tsd-check-runtime/blob/463b5ee/src/types.ts#L6)*
+*Defined in [types.ts:15](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L15)*
 
 When using `tsConfigFilePath` that's in another folder specify it with this option.
 
@@ -81,7 +109,9 @@ ___
 
 **● printResult**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:14](https://github.com/cancerberoSgx/tsd-check-runtime/blob/463b5ee/src/types.ts#L14)*
+*Defined in [types.ts:45](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L45)*
+
+Prints the test results to stdout
 
 ___
 <a id="printresultiffail"></a>
@@ -90,7 +120,9 @@ ___
 
 **● printResultIfFail**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:13](https://github.com/cancerberoSgx/tsd-check-runtime/blob/463b5ee/src/types.ts#L13)*
+*Defined in [types.ts:40](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L40)*
+
+Prints the test results to stdout if it fails
 
 ___
 <a id="tsconfigfilepath"></a>
@@ -99,7 +131,7 @@ ___
 
 **● tsConfigFilePath**: *`undefined` \| `string`*
 
-*Defined in [types.ts:3](https://github.com/cancerberoSgx/tsd-check-runtime/blob/463b5ee/src/types.ts#L3)*
+*Defined in [types.ts:5](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L5)*
 
 Use another tsconfig.json file than the default './tsconfig.json'. If so make sure you also set the property `folder` if it's in another folder
 
@@ -110,7 +142,9 @@ ___
 
 **● verifyProject**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:12](https://github.com/cancerberoSgx/tsd-check-runtime/blob/463b5ee/src/types.ts#L12)*
+*Defined in [types.ts:35](https://github.com/cancerberoSgx/tsd-check-runtime/blob/38d8187/src/types.ts#L35)*
+
+Besides making an initial file verification, it will also verify that the whole project compiles without errors. If not, the test will fail
 
 ___
 

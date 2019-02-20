@@ -1,6 +1,6 @@
 {
   "name": "tsd-check-runtime",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "TypeScript type declaration verification library. It's like tsd-check but works at runtime, actually compiling the code",
   "types": "dist/src/index.d.ts",
   "main": "dist/src/index.js",
@@ -16,7 +16,7 @@
     "test-standalone": "npx ts-node -P ./tsconfig.json --files src/__tests__/testWithoutJest.ts -P",
     "prettier": " npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma all --end-of-line lf --prose-wrap preserve --print-width 120 --no-bracket-spacing  --jsx-bracket-same-line true \"src/**/*.ts*\"",
     "all": "npm run clean && npm run prettier && npm run build && npm run test && npm run docs",
-    "docs": "npx typedoc src/types.ts src/checkType.ts src/expectType.ts --theme markdown --out api",
+    "docs": "npx typedoc src/types.ts src/checkType.ts src/expectType.ts --theme markdown --out api --ignoreCompilerErrors --tsconfig ./tsconfig.json",
     "clean": "rm -rf dist docs api  ",
     "prepare": "  npm run build"
   },

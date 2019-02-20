@@ -1,8 +1,8 @@
-import { Project, Diagnostic, ts, SourceFile } from 'ts-simple-ast'
-import { dirname, join, basename } from 'path'
-import { readFileSync } from 'fs'
-import { Options, Result, TypeRepresentation } from './types'
-import { getCallerFile, formatDiagnostics, unique, escapeValue } from './util'
+import {Project, Diagnostic, ts, SourceFile} from 'ts-simple-ast'
+import {dirname, join, basename} from 'path'
+import {readFileSync} from 'fs'
+import {Options, Result, TypeRepresentation} from './types'
+import {getCallerFile, formatDiagnostics, unique, escapeValue} from './util'
 
 export function checkType<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Result {
   return checkTypeCore(typeOrFunction, value, options)
@@ -21,7 +21,7 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
       addFilesFromTsConfig: true,
     })
   }
-  const { callerFile, allCallerFiles } = getCallerFile()
+  const {callerFile, allCallerFiles} = getCallerFile()
   if (!callerFile) {
     return {
       pass: false,
@@ -81,15 +81,14 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
 
   if (typeof typeOrFunction === 'function') {
     typeOrFunction = typeOrFunction(escapedValue)
-    options.dontCreateTestCodeVariable=true
+    options.dontCreateTestCodeVariable = true
   }
 
-  const { text, prefix } = typeof typeOrFunction === 'string' ? { text: typeOrFunction, prefix: '' } : typeOrFunction
+  const {text, prefix} = typeof typeOrFunction === 'string' ? {text: typeOrFunction, prefix: ''} : typeOrFunction
 
   if (options.dontCreateTestCodeVariable) {
     testCode = `${prefix}\n${text}`
-  }
-  else {
+  } else {
     testCode = `${prefix}\nconst ${unique('variable')}: ${text} = ${escapedValue}`
   }
 
@@ -101,8 +100,12 @@ ${testCode}
   sourceFile = project.createSourceFile(filePath, code)
   d = sourceFile.getPreEmitDiagnostics()
   const failErrors = formatDiagnostics(d)
-  const pass = d.length === 0 ? true : options.failOnlyWithErrorCodes ?
-    !failErrors.find(e => options.failOnlyWithErrorCodes!.includes(e.code)) : false
+  const pass =
+    d.length === 0
+      ? true
+      : options.failOnlyWithErrorCodes
+      ? !failErrors.find(e => options.failOnlyWithErrorCodes!.includes(e.code))
+      : false
 
   const r = {
     pass,
