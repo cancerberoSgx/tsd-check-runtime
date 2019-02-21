@@ -5,6 +5,10 @@ import { get } from "./__tsd_check_runtime__";
 type UnionOf<T extends any[]> = T[number]
 
 try {
+
+  describe('test', ()=>{
+    var a = 1
+  })
   // hard-code types as strings
   ok(!checkType(`UnionOf<[1, false]>`, 'a').pass)
   ok(!checkType(`UnionOf<[1, false]>`, 2).pass)
