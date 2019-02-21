@@ -119,9 +119,7 @@ Type() could fail, rename these identifiers in order to use it!`
         prependToFile: `
 {
   text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, 
-  // __tsdCR_prefix: ${sourceFilesPrependToFile[index]}
   __tsdCR_prefix: ${fileVariableAccessor&& fileVariableAccessor('__tsdCR_prefix')}
-
 }`.trim()
       }
     }
@@ -137,7 +135,6 @@ Type() could fail, rename these identifiers in order to use it!`
         argument: getter(index),
         prependToFile: `
 {
-  // __tsdCR_prefix: ${sourceFilesPrependToFile[sourceFilesPrepend[n.getSourceFile().getFilePath()]]},
   __tsdCR_prefix: ${fileVariableAccessor && fileVariableAccessor('__tsdCR_prefix')},
   text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}
 }
