@@ -1,6 +1,6 @@
 import { CallExpression, TypeGuards, SyntaxKind, Node } from 'ts-simple-ast'
 import { PrefixedText, TsdCheckRuntimeCliOptions } from './types'
-import { ExtractorGetter, ExtractorDataMode, ReplaceProjectFunctionCallOptions } from 'typescript-poor-man-reflection'
+import { ExtractorGetter, ExtractorDataMode, ReplaceProjectFunctionCallOptions, FileVariableAccessor } from 'typescript-poor-man-reflection'
 
 /**
  * Use this function to extract a type text from TypeScript code as a string variable.
@@ -31,7 +31,7 @@ export function customExtractor(
   n: CallExpression,
   index: number,
   getter: ExtractorGetter,
-  options: ReplaceProjectFunctionCallOptions & { dontFailOnDuplicateVariable?: boolean }
+  options: ReplaceProjectFunctionCallOptions & { dontFailOnDuplicateVariable?: boolean },fileVariableAccessor?: FileVariableAccessor
 ) {
   if (typeof sourceFilesPrepend[n.getSourceFile().getFilePath()] === 'undefined') {
     // rootDeclarations are considered for repeated names but not added to sourceFilesPrepend
@@ -112,23 +112,17 @@ Type() could fail, rename these identifiers in order to use it!`
         prependToFile: JSON.stringify(`${declarations.map(d => d.getText()).join('\n')}`)
       }
     } else {
-      // const prependToFilePrefix = `
-      // {
-      //   __tsdCR_prefix: ${JSON.stringify(declarations.map(d => d.getText()).join('\n'))},
-      //   text: ${JSON.stringify(n.getTypeArguments()[0].getText())}
-      // }`
+      fileVariableAccessor&& fileVariableAccessor('__tsdCR_prefix', JSON.stringify(declarations.map(d => d.getText()).join('\n')))
       sourceFilesPrependToFile[index] = JSON.stringify(declarations.map(d => d.getText()).join('\n'))
       return {
-        //   argument: getter(sourceFilesPrepend[n.getSourceFile().getFilePath()]),
-        //   prependToFile: JSON.stringify(`${declarations.map(d => d.getText()).join('\n')}`)
-        // }
-        // {}, __tsdCR_prefix: ${
         argument: getter(index),
-        // getter(sourceFilesPrepend[n.getSourceFile().getFilePath()])}}`,
-        prependToFile: `{text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, __tsdCR_prefix:${
-          sourceFilesPrependToFile[index]
-        }}`
-        // argument:  `{text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, __tsdCR_prefix: }`,
+        prependToFile: `
+{
+  text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}, 
+  // __tsdCR_prefix: ${sourceFilesPrependToFile[index]}
+  __tsdCR_prefix: ${fileVariableAccessor&& fileVariableAccessor('__tsdCR_prefix')}
+
+}`.trim()
       }
     }
   } else {
@@ -143,7 +137,8 @@ Type() could fail, rename these identifiers in order to use it!`
         argument: getter(index),
         prependToFile: `
 {
-  __tsdCR_prefix: ${sourceFilesPrependToFile[sourceFilesPrepend[n.getSourceFile().getFilePath()]]},
+  // __tsdCR_prefix: ${sourceFilesPrependToFile[sourceFilesPrepend[n.getSourceFile().getFilePath()]]},
+  __tsdCR_prefix: ${fileVariableAccessor && fileVariableAccessor('__tsdCR_prefix')},
   text: ${JSON.stringify(`${n.getTypeArguments()[0].getText()}`)}
 }
       `.trim()
