@@ -6,20 +6,10 @@ type UnionOf<T extends any[]> = T[number]
 
 try {
 
-  describe('test', ()=>{
-    var a = 1
-  })
   // hard-code types as strings
   ok(!checkType(`UnionOf<[1, false]>`, 'a').pass)
   ok(!checkType(`UnionOf<[1, false]>`, 2).pass)
   ok(checkType(`UnionOf<[1, false]>`, 1).pass)
-
-  // console.log(data[6][0]);
-
-  // console.log(Type<UnionOf<[string, string[], Date]>>(get(6, 0)));
-  // console.log(Type<UnionOf<[string, string[], Date]>>(get(6, 1)))
-  // console.log(Type<UnionOf<[string, number[], Date]>>(get(6, 2)))
-  // console.log(Type<UnionOf<[string, string[], Date]>>(get(6, 3)))
 
   // Using Type and tsd-test-runtime CLI tool:
   ok(expectType(Type<UnionOf<[string, string[], Date]>>(get(6, 0)), 'a'))
