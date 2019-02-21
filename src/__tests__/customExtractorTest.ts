@@ -37,6 +37,7 @@ const body = Type<any>()
       extracts: {
         Type: customExtractor
       },
+      extractorDataMode: 'prependVariable',
       extractorDataVariableName: '__CE'
     })
 
