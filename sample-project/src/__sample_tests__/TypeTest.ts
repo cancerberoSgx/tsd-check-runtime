@@ -1,5 +1,4 @@
 import { Type } from 'tsd-check-runtime';
-
 describe('Type', () => {
 
   type UnionOf<T extends any[]> = T[number]

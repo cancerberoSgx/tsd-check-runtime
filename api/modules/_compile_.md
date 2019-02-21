@@ -20,7 +20,7 @@
 
 ▸ **buildCode**(types: *[PrefixedText](../interfaces/_types_.prefixedtext.md)[]*, value: *`function`*): `string`
 
-*Defined in [compile.ts:31](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/compile.ts#L31)*
+*Defined in [compile.ts:31](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/compile.ts#L31)*
 
 **Parameters:**
 
@@ -38,7 +38,7 @@ ___
 
 ▸ **checkCompile**(options?: *[Options](../interfaces/_types_.options.md)*, value: *`function`*, ...types: *[PrefixedText](../interfaces/_types_.prefixedtext.md)[]*): [Result](../interfaces/_types_.result.md)
 
-*Defined in [compile.ts:8](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/compile.ts#L8)*
+*Defined in [compile.ts:8](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/compile.ts#L8)*
 
 Build test code fragment using given types (and its prefix) and value function and then calls [checkType](_checktype_.md#checktype) passing it. It forces options `{asString: true, dontCreateTestCodeVariable: true}`
 
@@ -59,7 +59,7 @@ ___
 
 ▸ **expectCompile**(options?: *[Options](../interfaces/_types_.options.md)*, value: *`function`*, ...types: *[PrefixedText](../interfaces/_types_.prefixedtext.md)[]*): `boolean`
 
-*Defined in [compile.ts:21](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/compile.ts#L21)*
+*Defined in [compile.ts:21](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/compile.ts#L21)*
 
 Shortcut return value for [checkCompile](_compile_.md#checkcompile)
 

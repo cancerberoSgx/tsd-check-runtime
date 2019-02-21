@@ -7,6 +7,7 @@
 ### Variables
 
 * [sourceFilesPrepend](_customextractor_.md#sourcefilesprepend)
+* [sourceFilesPrependToFile](_customextractor_.md#sourcefilesprependtofile)
 
 ### Functions
 
@@ -24,11 +25,24 @@
 
 **● sourceFilesPrepend**: *`object`*
 
-*Defined in [customExtractor.ts:28](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/customExtractor.ts#L28)*
+*Defined in [customExtractor.ts:27](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/customExtractor.ts#L27)*
 
 #### Type declaration
 
 [name: `string`]: `number`
+
+___
+<a id="sourcefilesprependtofile"></a>
+
+### `<Const>` sourceFilesPrependToFile
+
+**● sourceFilesPrependToFile**: *`object`*
+
+*Defined in [customExtractor.ts:29](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/customExtractor.ts#L29)*
+
+#### Type declaration
+
+[index: `number`]: `string`
 
 ___
 
@@ -40,7 +54,7 @@ ___
 
 ▸ **Type**<`T`>(t?: *[PrefixedText](../interfaces/_types_.prefixedtext.md)*): [PrefixedText](../interfaces/_types_.prefixedtext.md)
 
-*Defined in [customExtractor.ts:24](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/customExtractor.ts#L24)*
+*Defined in [customExtractor.ts:23](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/customExtractor.ts#L23)*
 
 Use this function to extract a type text from TypeScript code as a string variable.
 
@@ -74,18 +88,18 @@ ___
 
 ###  customExtractor
 
-▸ **customExtractor**(this: *[TsdCheckRuntimeCliOptions](../interfaces/_customextractormain_.tsdcheckruntimeclioptions.md)*, n: *`CallExpression`*, index: *`number`*, getter: *`ExtractorGetter`*): `object` \| `object`
+▸ **customExtractor**(n: *`CallExpression`*, index: *`number`*, getter: *`ExtractorGetter`*, options: *`ReplaceProjectFunctionCallOptions` & `object`*): `object` \| `object`
 
-*Defined in [customExtractor.ts:30](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/customExtractor.ts#L30)*
+*Defined in [customExtractor.ts:30](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/customExtractor.ts#L30)*
 
 **Parameters:**
 
 | Name | Type |
 | ------ | ------ |
-| this | [TsdCheckRuntimeCliOptions](../interfaces/_customextractormain_.tsdcheckruntimeclioptions.md) |
 | n | `CallExpression` |
 | index | `number` |
 | getter | `ExtractorGetter` |
+| options | `ReplaceProjectFunctionCallOptions` & `object` |
 
 **Returns:** `object` \| `object`
 
@@ -96,7 +110,7 @@ ___
 
 ▸ **getNames**(n: *`Node`*): `string`[]
 
-*Defined in [customExtractor.ts:122](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/customExtractor.ts#L122)*
+*Defined in [customExtractor.ts:155](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/customExtractor.ts#L155)*
 
 **Parameters:**
 

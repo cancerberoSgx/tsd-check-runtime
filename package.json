@@ -13,13 +13,13 @@
     "type": "npx ts-node src/customExtractorMain.ts --moduleSpecifier '..'",
     "type-clean": "npx ts-node src/customExtractorMain.ts --moduleSpecifier '..' --clean",
     "sample-project": "cd sample-project && ([ -d node_modules ] || npm i]) && npm run all",
-    "test-run": "jest --config ./jest.config-spec.js",
+    "test-run": "npm run type && jest --config ./jest.config-spec.js",
     "test-watch": "npm run test-run -- --watch",
     "test-standalone": "npm run type && npx ts-node -P ./tsconfig.json --files src/__tests__/testWithoutJest.ts -P  ",
     "prettier": " npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma none --end-of-line lf --prose-wrap preserve --print-width 120 --jsx-bracket-same-line true \"src/**/*.ts*\"",
-    "all": "npm run clean && npm run prettier && npm run build && npm run test && npm run docs",
+    "all": "npm run clean && npm run prettier && npm run build && npm run test && npm run docs && npm run type-clean",
     "docs": "npx typedoc src/index.ts --theme markdown --out api --ignoreCompilerErrors --tsconfig ./tsconfig.json",
-    "clean": "rm -rf dist docs api   && npm run type-clean ",
+    "clean": "rm -rf dist docs api && npm run type-clean ",
     "prepare": "npm run clean && npm run build"
   },
   "devDependencies": {

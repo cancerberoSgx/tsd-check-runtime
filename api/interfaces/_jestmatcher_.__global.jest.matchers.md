@@ -27,7 +27,7 @@
 
 ▸ **toCompile**<`R`>(...types: *[PrefixedText](_types_.prefixedtext.md)[]*): `R`
 
-*Defined in [jestMatcher.ts:20](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/jestMatcher.ts#L20)*
+*Defined in [jestMatcher.ts:20](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/jestMatcher.ts#L20)*
 
 Calls [checkCompile](../modules/_compile_.md#checkcompile) with given value and type and optional options.
 
@@ -43,7 +43,7 @@ Calls [checkCompile](../modules/_compile_.md#checkcompile) with given value and 
 
 **Returns:** `R`
 
-*Defined in [jestMatcher.ts:25](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/jestMatcher.ts#L25)*
+*Defined in [jestMatcher.ts:25](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/jestMatcher.ts#L25)*
 
 Calls [checkCompile](../modules/_compile_.md#checkcompile) with given value and type and optional options.
 
@@ -65,7 +65,7 @@ ___
 
 ▸ **toMatchType**<`R`>(type: *[TypeRepresentation](../modules/_types_.md#typerepresentation)<`R`>*, options?: *[Options](_types_.options.md) & `object`*): `R`
 
-*Defined in [jestMatcher.ts:15](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/jestMatcher.ts#L15)*
+*Defined in [jestMatcher.ts:15](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/jestMatcher.ts#L15)*
 
 calls [checkType](../modules/_checktype_.md#checktype) with given value and type and optional options. Options might also include `exactly` property which will verify that the value type not only match given type but also that they are identical
 

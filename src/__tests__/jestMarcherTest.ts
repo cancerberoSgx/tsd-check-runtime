@@ -1,7 +1,5 @@
 import '..'
 import { Type } from '..'
-import { get } from "./__tsd_check_runtime__";
-
 type UnionOf<T extends any[]> = T[number]
 
 interface A {}
@@ -36,18 +34,18 @@ describe('jestMatchers', () => {
     it('toCompile', () => {
       expect(() => `var a = 1`).toCompile()
       expect(() => `v a r a = 1`).not.toCompile()
-      expect((n: string) => `var a: ${n} = 1`).toCompile(Type<number>(get(4, 0)))
-      expect((n: string) => `var a: ${n} = 1`).not.toCompile(Type<string>(get(4, 1)))
+      expect((n: string) => `var a: ${n} = 1`).toCompile(Type<number>())
+      expect((n: string) => `var a: ${n} = 1`).not.toCompile(Type<string>())
       interface II {
         foo: Date[][]
         m(): string[]
       }
       expect(
         (II: string, mReturnType: string) => `var a: ${II} = {foo: [], m(){return null as any as ${mReturnType}}}`
-      ).toCompile(Type<II>(get(4, 2)), Type<string[]>(get(4, 3)))
+      ).toCompile(Type<II>(), Type<string[]>())
       expect(
         (II: string, mReturnType: string) => `var a: ${II} = {foo: [], m(){return null as any as ${mReturnType}}}`
-      ).not.toCompile(Type<II>(get(4, 4)), Type<number[]>(get(4, 5)))
+      ).not.toCompile(Type<II>(), Type<number[]>())
     })
   })
 })

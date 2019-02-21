@@ -1,4 +1,4 @@
-import { ReplaceProjectFunctionCallOptions } from 'typescript-poor-man-reflection';
+import { ReplaceProjectFunctionCallOptions } from 'typescript-poor-man-reflection'
 
 export interface Options {
   /**

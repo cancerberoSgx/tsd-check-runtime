@@ -32,7 +32,7 @@
 
 **Ƭ ArrayLiteral**: *`ArrayLiteral<T, L>`*
 
-*Defined in [util.ts:79](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/util.ts#L79)*
+*Defined in [util.ts:80](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/util.ts#L80)*
 
 ___
 <a id="tuple"></a>
@@ -41,7 +41,7 @@ ___
 
 **Ƭ Tuple**: *[`TItem`, `Array`] & `object`*
 
-*Defined in [util.ts:105](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/util.ts#L105)*
+*Defined in [util.ts:106](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/util.ts#L106)*
 
 ___
 
@@ -53,7 +53,7 @@ ___
 
 **● _unique**: *`number`* = 0
 
-*Defined in [util.ts:23](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/util.ts#L23)*
+*Defined in [util.ts:24](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/util.ts#L24)*
 
 ___
 <a id="callsites"></a>
@@ -62,7 +62,7 @@ ___
 
 **● callsites**: *`any`* =  require('callsites')
 
-*Defined in [util.ts:58](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/util.ts#L58)*
+*Defined in [util.ts:59](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/util.ts#L59)*
 
 ___
 
@@ -74,7 +74,7 @@ ___
 
 ▸ **escapeValue**<`T`>(v: *`T`*, options: *[Options](../interfaces/_types_.options.md)*): `string` \| `undefined`
 
-*Defined in [util.ts:35](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/util.ts#L35)*
+*Defined in [util.ts:36](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/util.ts#L36)*
 
 *__internal__*: 
 
@@ -97,7 +97,7 @@ ___
 
 ▸ **formatDiagnostics**(d: *`Diagnostic`[]*): [CompilationError](../interfaces/_types_.compilationerror.md)[]
 
-*Defined in [util.ts:6](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/util.ts#L6)*
+*Defined in [util.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/util.ts#L7)*
 
 *__internal__*: 
 
@@ -116,7 +116,7 @@ ___
 
 ▸ **getCallerFile**(): `object`
 
-*Defined in [util.ts:60](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/util.ts#L60)*
+*Defined in [util.ts:61](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/util.ts#L61)*
 
 *__internal__*: 
 
@@ -129,7 +129,7 @@ ___
 
 ▸ **quote**(s: *`string`*, q?: *`string`*): `string`
 
-*Defined in [util.ts:30](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/util.ts#L30)*
+*Defined in [util.ts:31](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/util.ts#L31)*
 
 *__internal__*: 
 
@@ -149,7 +149,7 @@ ___
 
 ▸ **unique**(prefix?: *`string`*): `string`
 
-*Defined in [util.ts:25](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/util.ts#L25)*
+*Defined in [util.ts:26](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/util.ts#L26)*
 
 *__internal__*: 
 

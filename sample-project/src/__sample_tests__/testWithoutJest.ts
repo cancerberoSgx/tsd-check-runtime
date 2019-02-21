@@ -1,7 +1,6 @@
 import { UnionOf } from '../union';
 import { checkType, Type, expectType, expectCompile } from 'tsd-check-runtime';
 import { ok, } from 'assert';
-
 try {
   
   // hard-code types as strings

@@ -23,7 +23,7 @@
 
 **● __tsdCR_prefix**: *`string` \| `undefined`*
 
-*Defined in [types.ts:126](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/types.ts#L126)*
+*Defined in [types.ts:128](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/types.ts#L128)*
 
 ___
 <a id="text"></a>
@@ -32,7 +32,7 @@ ___
 
 **● text**: *`string`*
 
-*Defined in [types.ts:125](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/types.ts#L125)*
+*Defined in [types.ts:127](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/types.ts#L127)*
 
 ___
 

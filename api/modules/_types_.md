@@ -10,6 +10,7 @@
 * [Options](../interfaces/_types_.options.md)
 * [PrefixedText](../interfaces/_types_.prefixedtext.md)
 * [Result](../interfaces/_types_.result.md)
+* [TsdCheckRuntimeCliOptions](../interfaces/_types_.tsdcheckruntimeclioptions.md)
 
 ### Type aliases
 
@@ -25,7 +26,7 @@
 
 **Ƭ TypeRepresentation**: *`string` \| [PrefixedText](../interfaces/_types_.prefixedtext.md) \| `function`*
 
-*Defined in [types.ts:122](https://github.com/cancerberoSgx/tsd-check-runtime/blob/84ed4b1/src/types.ts#L122)*
+*Defined in [types.ts:124](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1e47935/src/types.ts#L124)*
 
 ___
 

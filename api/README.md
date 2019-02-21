@@ -215,7 +215,6 @@ Problems
 * ["checkType"](modules/_checktype_.md)
 * ["compile"](modules/_compile_.md)
 * ["customExtractor"](modules/_customextractor_.md)
-* ["customExtractorMain"](modules/_customextractormain_.md)
 * ["expectType"](modules/_expecttype_.md)
 * ["index"](modules/_index_.md)
 * ["jestMatcher"](modules/_jestmatcher_.md)
