@@ -1,0 +1,52 @@
+{
+  "name": "tsd-check-runtime",
+  "version": "0.0.1",
+  "description": "TypeScript types declaration checking library. It's like tsd-check but verifies at runtime, actually compiling the code",
+  "types": "dist/src/index.d.ts",
+  "main": "dist/src/index.js",
+  "typings": "dist/src/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "build-watch": "tsc -w",
+    "test": "jest --config ./jest.config-spec.js ",
+    "test-watch": "npm test -- --watch",
+    "prettier": " npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma all --end-of-line lf --prose-wrap preserve --print-width 120 --no-bracket-spacing  --jsx-bracket-same-line true \"src/**/*.ts*\"",
+    "all": "npm run clean && npm run prettier && npm run build && npm run test && npm tun docs",
+    "docs": "npx typedoc src/toHave/types.ts src/toEdit/types.ts src/toTrigger/types.ts --theme markdown --out api",
+    "clean": "rm -rf dist docs api",
+    "prepare": "npm run build && npx shx rm -rf dist/**/__tests__"
+  },
+  "devDependencies": {
+    "@types/jest": "^24.0.11",
+    "@types/node": "^10.12.18",
+    "jest": "^24.5.0",
+    "prettier": "^1.16.4",
+    "ts-jest": "^24.0.0",
+    "ts-node": "^7.0.1",
+    "typedoc": "^0.13.0",
+    "typedoc-plugin-markdown": "^1.1.27",
+    "ts-simple-ast": "^21.0.4",
+    "typescript": "^3.3.3333"
+  },
+  "dependencies": {
+    "callsites": "^3.0.0",
+    "javascript-stringify": "^2.0.0"
+  },
+  "keywords": [
+    "JavaScript",
+    "TypeScript",
+    "tsd",
+    "typescript declaration",
+    "tsd-check",
+    "types",
+    "typings",
+    "utilities",
+    "miscellaneous"
+  ],
+  "author": "Sebastián Gurin",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cancerberoSgx/misc-utils-of-mine.git"
+  },
+  "license": "MIT"
+}
