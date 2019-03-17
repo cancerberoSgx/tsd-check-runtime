@@ -1,7 +1,7 @@
 {
   "name": "tsd-check-runtime",
   "version": "0.0.1",
-  "description": "TypeScript types declaration checking library. It's like tsd-check but verifies at runtime, actually compiling the code",
+  "description": "TypeScript type declaration verification library. It's like tsd-check but works at runtime, actually compiling the code",
   "types": "dist/src/index.d.ts",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
@@ -11,8 +11,8 @@
     "test": "jest --config ./jest.config-spec.js ",
     "test-watch": "npm test -- --watch",
     "prettier": " npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma all --end-of-line lf --prose-wrap preserve --print-width 120 --no-bracket-spacing  --jsx-bracket-same-line true \"src/**/*.ts*\"",
-    "all": "npm run clean && npm run prettier && npm run build && npm run test && npm tun docs",
-    "docs": "npx typedoc src/toHave/types.ts src/toEdit/types.ts src/toTrigger/types.ts --theme markdown --out api",
+    "all": "npm run clean && npm run prettier && npm run build && npm run test && npm run docs",
+    "docs": "npx typedoc src/types.ts src/checkType.ts src/expectType.ts --theme markdown --out api",
     "clean": "rm -rf dist docs api",
     "prepare": "npm run build && npx shx rm -rf dist/**/__tests__"
   },

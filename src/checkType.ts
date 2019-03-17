@@ -1,14 +1,14 @@
 import {Project, Diagnostic, ts, SourceFile} from 'ts-simple-ast'
 import {dirname, join} from 'path'
 import {readFileSync} from 'fs'
-import {Options, Fail, TypeRepresentation} from './types'
+import {Options, Result, TypeRepresentation} from './types'
 import {getCallerFile, formatDiagnostics, unique, escapeValue} from './util'
 
-export function checkType<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Fail {
+export function checkType<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Result {
   return checkTypeCore(typeOrFunction, value, options)
 }
 /** @internal */
-export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Fail {
+export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Result {
   let d: Diagnostic<ts.Diagnostic>[]
   let sourceFile: SourceFile
   const tsConfigFilePath = options.tsConfigFilePath || './tsconfig.json'

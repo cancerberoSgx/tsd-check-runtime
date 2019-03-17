@@ -11,7 +11,7 @@ export interface Options {
   printResultIfFail?: boolean
   printResult?: boolean
 }
-export interface Fail {
+export interface Result {
   pass: boolean
   error?: string
   failErrors?: CompilationError[]

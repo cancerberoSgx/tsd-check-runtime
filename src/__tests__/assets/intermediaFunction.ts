@@ -1,6 +1,10 @@
 import {checkType} from '../../checkType'
-import {Fail, Options, TypeRepresentation} from '../../types'
+import {Result, Options, TypeRepresentation} from '../../types'
 
-export function intermediateFunction<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Fail {
+export function intermediateFunction<T>(
+  typeOrFunction: TypeRepresentation<T>,
+  value: T,
+  options: Options = {},
+): Result {
   return checkType(typeOrFunction, value, options)
 }
