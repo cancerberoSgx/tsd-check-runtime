@@ -1,6 +1,6 @@
-import { Diagnostic, ts } from 'ts-simple-ast'
-import { Options, CompilationError } from './types'
-import { stringify } from 'javascript-stringify'
+import {Diagnostic, ts} from 'ts-simple-ast'
+import {Options, CompilationError} from './types'
+import {stringify} from 'javascript-stringify'
 /** @internal */
 
 export function formatDiagnostics(d: Diagnostic[]): CompilationError[] {
@@ -59,8 +59,7 @@ export function getCallerFile(): string | undefined {
   const c = callsites() as any[]
 
   // this is for the case of using jest matcher from an external project:
-  const jestMatcher = c.filter(c => c.getFileName())
-    .findIndex(c => c.getFileName().endsWith('dist/src/jestMatcher.js'))
+  const jestMatcher = c.filter(c => c.getFileName()).findIndex(c => c.getFileName().endsWith('dist/src/jestMatcher.js'))
   if (jestMatcher !== -1) {
     return c[jestMatcher + 2].getFileName()
   }
