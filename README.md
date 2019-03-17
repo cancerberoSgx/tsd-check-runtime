@@ -1,8 +1,8 @@
-Check TypeScript Type errors at runtime. Write type tests and run them instead of just compile them.
+Check TypeScript Type errors at runtime. Write type tests and *run* them instead of just *compile* them.
 
 ## Motivation
 
-To test TypeScript Type libraries (like DefinitelyTyped, [SimplyTyped](https://github.com/andnp/SimplyTyped)), tools like tsd-check are used which perform verifications at compile time. Since the project cannot have compile errors, is not possible to check for failures. 
+To test TypeScript Type libraries (like DefinitelyTyped, [SimplyTyped](https://github.com/andnp/SimplyTyped)), tools like tsd-check are used which perform verifications at compile time. Since the project cannot have compile errors, is not possible to check for failures.
 
 In other words you cannot assert using the negative, like in `expect(foo).not.toHaveType(Bar)`
 
@@ -18,7 +18,7 @@ npm install -D tsd-check-runtime
 
 ### expectType()
 
-A simplified API
+A simplified API.
 
 ```ts
 import {expectType} from 'tsd-check-runtime'
@@ -52,6 +52,7 @@ test('expectType - the high level API', () => {
 The low level API. does the same thing as the simplified one, but returns result object with more information.
 
 ```ts
+import {checkType} from 'tsd-check-runtime'
 const result = checkType(value => `
     var a: KeysToTuple<Date> = ${value}`,
   ['toUTCString', 'toISOString', 'toJSON'],
@@ -62,6 +63,8 @@ if(!result.pass){
 ```
 
 ### Jest custom matcher
+
+Adds `toMatchType` jest matcher that can be used like this:
 
 ```ts
 import 'tsd-check-runtime'

@@ -1,5 +1,5 @@
 
-Check TypeScript Type errors at runtime. Write type tests and run them instead of just compile them.
+Check TypeScript Type errors at runtime. Write type tests and _run_ them instead of just _compile_ them.
 
 Motivation
 ----------
@@ -21,7 +21,7 @@ npm install -D tsd-check-runtime
 
 ### expectType()
 
-A simplified API
+A simplified API.
 
 ```ts
 import {expectType} from 'tsd-check-runtime'
@@ -55,6 +55,7 @@ test('expectType - the high level API', () => {
 The low level API. does the same thing as the simplified one, but returns result object with more information.
 
 ```ts
+import {checkType} from 'tsd-check-runtime'
 const result = checkType(value => `
     var a: KeysToTuple<Date> = ${value}`,
   ['toUTCString', 'toISOString', 'toJSON'],
@@ -66,6 +67,8 @@ if(!result.pass){
 
 ### Jest custom matcher
 
+Adds `toMatchType` jest matcher that can be used like this:
+
 ```ts
 import 'tsd-check-runtime'
 test('jest matcher should work', () => {
@@ -76,7 +79,10 @@ test('jest matcher should work', () => {
 
 ### API
 
-TODO
+*   [Options](api/interfaces/_types_.options.md)
+*   [Result](api/interfaces/_types_.result.md)
+*   [expectType](api/modules/_expecttype_.md)
+*   [checkType](api/modules/_checktype_.md)
 
 How it works
 ------------
