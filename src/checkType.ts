@@ -29,7 +29,7 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
   if (!callerSourceFile) {
     return {
       pass: false,
-      error: `Caller source must belong to ${tsConfigFilePath} project`,
+      error: `Caller source must belong to ${tsConfigFilePath} project but ${callerFile} does not`,
     }
   }
   if (options.verifyProject) {
