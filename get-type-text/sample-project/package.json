@@ -5,14 +5,14 @@
   "types": "dist/src/index.d.ts",
   "main": "dist/src/index.js",
   "typings": "dist/src/index.d.ts",
+  "private": true,
   "scripts": {
     "build": "tsc ",
     "build-watch": "tsc -w",
     "clean": "rm -rf dist docs api",
     "test": "jest --config ./jest.config-spec.js ",
     "test-watch": "npm test -- --watch",
-    "all": "npm run clean && npm run build && npm run test ",
-    "prepare": "npm run build"
+    "all": "npm run clean && npm run build && npm run test "
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",

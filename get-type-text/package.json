@@ -4,6 +4,7 @@
   "description": "ample-project",
   "types": "dist/src/index.d.ts",
   "main": "dist/src/index.js",
+  "bin": "bin/get-type-text.js",
   "typings": "dist/src/index.d.ts",
   "scripts": {
     "build": "tsc ",
@@ -20,7 +21,6 @@
     "jest": "^24.5.0",
     "ts-jest": "^24.0.0",
     "ts-simple-ast": "^21.0.4",
-    "tsd-check-runtime": "file:..",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
