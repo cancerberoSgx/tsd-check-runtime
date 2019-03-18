@@ -1,17 +1,24 @@
 import { TypeGuards, SyntaxKind, Identifier, SourceFile, CallExpression } from 'ts-simple-ast';
 import { quote } from "./util";
+import { Replacement } from './main';
 
-export function replaceFunctionCall(sourceFile: SourceFile, moduleSpecifier: string, name: string) {
+export function replaceFunctionCall(sourceFile: SourceFile, moduleSpecifier: string, name: string):(Replacement|undefined)[]  {
+  const replaced: Replacement[]= [ ]
   const callExpressions = extractCallExpressionsFrom(sourceFile, moduleSpecifier, name);
   callExpressions.forEach(c => {
     //TODO: verify type argument 0 exists and has correct type
     if(c.getArguments().length===0){
       // first time
-    c.addArgument(getTypeText(c))
+      const r = getTypeText(c)
+    c.addArgument(r)
+    replaced.push({file: sourceFile.getFilePath(), replacement: r, firstTime: true})
     }
     else if(c.getArguments().length===1){
-      // second time
-      c.getArguments()[0].replaceWithText(getArgumentText(c))
+      // second time}
+      const t = getArgumentText(c)
+      c.getArguments()[0].replaceWithText(t)
+    replaced.push({file: sourceFile.getFilePath(), replacement: t, firstTime: false})
+
     }
     else {
       throw 'more than 1 argument - contract broken'
@@ -19,10 +26,11 @@ export function replaceFunctionCall(sourceFile: SourceFile, moduleSpecifier: str
     }
     // c.replaceWithText(quote(c.getTypeArguments()[0]!.getText()))
   });
+  return replaced
 }
 
 function getTypeText(c:CallExpression){
-  //TODO: veryfy type argument exist
+  //TODO: verify type argument exist
   const t= c.getTypeArguments()[0]!.getText()
   return quote(t)
 }
@@ -33,10 +41,10 @@ function getArgumentText(c: CallExpression){
 return text
   // return ``
 }
-function extractArgumentText(c: CallExpression):string{
-    //TODO: verify type argument 0 exists and has correct type
-  return c.getArguments()[0]!.getText()
-}
+// function extractArgumentText(c: CallExpression):string{
+//     //TODO: verify type argument 0 exists and has correct type
+//   return c.getArguments()[0]!.getText()
+// }
 function extractCallExpressionsFrom(sourceFile: SourceFile, moduleSpecifier: string, name: string) {
   const ids = sourceFile.getDescendants().filter(TypeGuards.isCallExpression).map(c => c.getFirstChildByKind(SyntaxKind.Identifier)).filter(i => i && i.getText() === name) as Identifier[];
   const callExpressionsImportedFromFooParent = ids

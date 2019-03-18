@@ -1,5 +1,8 @@
-// export type NameOf<T> = string
+export default function TypeText<T>( t?:string): {toString():string|undefined} {
 
-export default function NameOf<T>(t:T): string{
-  return '__needs post processing to work__'
+  return {
+    toString: (function (this:string|undefined){
+      return this
+    }).bind(t)
+  }
 }
