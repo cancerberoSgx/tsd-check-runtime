@@ -1,5 +1,5 @@
 {
-  "name": "get-type-text",
+  "name": "sampleproject",
   "version": "0.0.1",
   "description": "ample-project",
   "types": "dist/src/index.d.ts",
@@ -23,7 +23,9 @@
     "tsd-check-runtime": "file:..",
     "typescript": "^3.3.3333"
   },
-  "dependencies": {},
+  "dependencies": {
+    "get-type-text": "file:.."
+  },
   "keywords": [
     "JavaScript",
     "TypeScript",
