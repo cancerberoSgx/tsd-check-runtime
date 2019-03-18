@@ -9,6 +9,10 @@ export function checkType<T>(typeOrFunction: TypeRepresentation<T>, value: T, op
 }
 /** @internal */
 export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T, options: Options = {}): Result {
+  // console.log(options);
+  options.dontEscape = options.asString || options.dontEscape
+  options.printResult && console.log(options)
+
   let d: Diagnostic<ts.Diagnostic>[]
   let sourceFile: SourceFile
   const tsConfigFilePath = options.tsConfigFilePath || './tsconfig.json'
@@ -97,6 +101,8 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
   if (options.printResult || (!r.pass && options.printResultIfFail)) {
     console.log(JSON.stringify(r, null, 2))
   }
+  // options.printResult && console.log(r);
+
   return r
 }
 let project: Project

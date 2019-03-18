@@ -16,11 +16,13 @@ if (typeof expect !== 'undefined') {
       return {
         pass: r.pass,
         message: () =>
-          `expect value ${escapeValue(value, options)} to match ${
+          `expect value ${escapeValue(value, options)} ${this.isNot ? 'not ' : ''}to match ${
             typeof type === 'string' ? `type ${type}` : `types in code "${r.testCode}"`
-          }but it failed with with errors [${
-            r.failErrors ? r.failErrors.map(r => r.message).join('\n') : r.error ? r.error : 'UNKNOWN'
-          }]`,
+          }but ${
+            this.isNot
+              ? "didn't"
+              : `[${r.failErrors ? r.failErrors.map(r => r.message).join('\n') : r.error ? r.error : 'UNKNOWN'}]`
+          }`,
       }
     },
   })

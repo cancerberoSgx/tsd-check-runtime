@@ -25,20 +25,22 @@ let _unique: number = 0
 export function unique(prefix: string = '_'): string {
   return prefix + _unique++
 }
+
 /** @internal */
 export function quote(s: string, q: string = '"'): string {
   return q + s.replace(new RegExp(q, 'g'), '\\' + q) + q
 }
+
 /** @internal */
 export function escapeValue<T>(v: T, options: Options): string | undefined {
-  if (options.enforceJsonValues) {
+  if (typeof v === 'string' || options.asString) {
+    return quote(v + '')
+  } else if (options.enforceJsonValues) {
     try {
       return JSON.stringify(v)
     } catch (error) {
       return undefined
     }
-  } else if (typeof v === 'string') {
-    return quote(v)
   } else if (typeof v === 'undefined') {
     return 'undefined'
   } else if (v === null) {

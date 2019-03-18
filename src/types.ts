@@ -7,6 +7,8 @@ export interface Options {
   dontVerifyFile?: boolean
   /** pass true if you are already passing a quoted value. By default value is escaped in the output */
   dontEscape?: boolean
+  /** in cases where the value is an object that knows how to print itself and you don't want to be processed by Stringify - force it to be rendered as string . Implies `dontScape` */
+  asString?: boolean
   verifyProject?: boolean
   printResultIfFail?: boolean
   printResult?: boolean

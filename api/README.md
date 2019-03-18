@@ -155,10 +155,28 @@ expect(expectType(value => `const v: typeof describe = ${value}`, describe,
 
 **reference types in the global scope only**. If you reference a type that is declared in the local closure (i.e inside the `it()` it will fail)
 
+TODO/Ideas
+----------
+
+*   we only have checkType (toMatchType) - would be nice to also have others like expect(a).toTypeIdentical(B) and toTypeExtendedBy toTypeExtend, toTypeNever, etc
+    
+    "value can be used also with a type for parametrize types:
+    
+    ```
+        expect(TypeText<Tuple<[{ a: string }], 2>>('Tuple<[{ a: string }], 2>')).toMatchType(v=>`
+       declare var a: ${v}
+       ver b = a[33] // it does not fail!
+       `)
+       , {dontEscape: true, printResult:true}})
+    ```
+    
+    ALSO, in this case we need a better name than toMatchType, and to have dontEscape true.
+    
+
 Problems
 --------
 
-*   Writing types as string has a big problem and that is refactors since they won't be updated. can we don something about it?
+*   (solved kind of by get-type-text) : Writing types as string has a big problem and that is refactors since they won't be updated. can we don something about it?
     *   using [https://github.com/dsherret/ts-nameof](https://github.com/dsherret/ts-nameof) . in jest seems straight forward : [https://github.com/dsherret/ts-nameof/blob/master/packages/ts-nameof/setup/jest.md](https://github.com/dsherret/ts-nameof/blob/master/packages/ts-nameof/setup/jest.md) , but in tsx is not so .. [https://github.com/dsherret/ts-nameof/blob/master/packages/ts-nameof/setup/tsc.md](https://github.com/dsherret/ts-nameof/blob/master/packages/ts-nameof/setup/tsc.md)
     *   could we develop some sort of post process to store the info externally ?
 
