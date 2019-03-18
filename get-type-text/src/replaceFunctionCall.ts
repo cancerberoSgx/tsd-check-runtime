@@ -1,5 +1,5 @@
-import {TypeGuards, SyntaxKind, Identifier, SourceFile, CallExpression} from 'ts-simple-ast'
-import {Replacement, ReplaceFunctionCallsOptions, FUNCTION_NAME, MODULE_SPECIFIER_DEFAULT} from './types'
+import { TypeGuards, SyntaxKind, Identifier, SourceFile, CallExpression } from 'ts-simple-ast'
+import { Replacement, ReplaceFunctionCallsOptions, FUNCTION_NAME, MODULE_SPECIFIER_DEFAULT } from './types'
 
 /** JavaScript API to replace arguments of all function expression calls in given (ts-simple-ast SourceFile) file that match given options. See  `ReplaceFunctionCallsOptions`. */
 export function replaceFunctionCall(
@@ -8,24 +8,24 @@ export function replaceFunctionCall(
     moduleSpecifier = MODULE_SPECIFIER_DEFAULT,
     functionName = FUNCTION_NAME,
     cleanArguments = false,
-  }: ReplaceFunctionCallsOptions = {moduleSpecifier: 'get-type-text', functionName: 'TypeText'},
+  }: ReplaceFunctionCallsOptions = { moduleSpecifier: 'get-type-text', functionName: 'TypeText' },
 ): (Replacement | undefined)[] {
   const replaced: Replacement[] = []
   const callExpressions = extractCallExpressionsFrom(sourceFile, moduleSpecifier, functionName)
   callExpressions.forEach(c => {
     if (c.getArguments().length === 0 && !cleanArguments) {
-      //TODO: verify type argument 0 exists and has correct type
       // first time
+      //TODO: verify type argument 0 exists and has correct type
       const r = quote(c.getTypeArguments()[0]!.getText())
       c.addArgument(r)
-      replaced.push({file: sourceFile.getFilePath(), replacement: r, firstTime: true})
+      replaced.push({ file: sourceFile.getFilePath(), replacement: r, firstTime: true })
     } else if (c.getArguments().length === 1) {
       // second time - dispatch --cleanArguments or replace existing one
-      const t = cleanArguments ? '' : quote(c.getTypeArguments()[0]!.getText())
-      c.getArguments()[0].replaceWithText(t)
-      replaced.push({file: sourceFile.getFilePath(), replacement: t, firstTime: false})
-    } else {
-      throw 'more than 1 argument - contract broken'
+      const r = cleanArguments ? '' : quote(c.getTypeArguments()[0]!.getText())
+      c.getArguments()[0].replaceWithText(r)
+      replaced.push({ file: sourceFile.getFilePath(), replacement: r, firstTime: false })
+    } else if (c.getArguments().length > 1) {
+      console.error(`more than 1 argument found in file ${sourceFile.getFilePath()} function call expression ${c.getText()}`)
     }
   })
   return replaced

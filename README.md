@@ -74,6 +74,21 @@ test('jest matcher should work', () => {
 })
 ```
 
+### get-type-text to not hard-code types as strings
+
+[get-type-text](get-type-text) allows to get a type text at runtime by preprocessing the sources in the development workflow. Check there for details:
+
+```ts
+import 'tsd-check-runtime'
+import TypeText from 'get-type-text'
+type UnionOf<T extends any[]> = T[number]
+test('should work with get-type-text', () => {
+  expect('a').not.toMatchType(TypeText<UnionOf<[1, false]>>())
+  expect(2).not.toMatchType(TypeText<UnionOf<[1, false]>>())
+  expect(1).toMatchType(TypeText<UnionOf<[1, false]>>())
+})
+```
+
 ### API
 
  * [Options](api/interfaces/_types_.options.md)

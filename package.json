@@ -1,6 +1,6 @@
 {
   "name": "tsd-check-runtime",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "TypeScript type declaration verification library. It's like tsd-check but works at runtime, actually compiling the code",
   "types": "dist/src/index.d.ts",
   "main": "dist/src/index.js",
@@ -8,27 +8,28 @@
   "scripts": {
     "build": "tsc",
     "build-watch": "tsc -w",
-    "test": "npm run test-run && npm run test-standalone && npm run sample-project", 
+    "test": "npm run test-run && npm run test-standalone && npm run sample-project",
     "sample-project": "cd sample-project && ([ -d node_modules ] || npm i]) && npm run all",
-    "test-run": "jest --config ./jest.config-spec.js ",
+    "test-run": "npx get-type-text && jest --config ./jest.config-spec.js ",
     "test-watch": "npm run test-run -- --watch",
     "test-standalone": "npx ts-node -P ./tsconfig.json --files src/__tests__/testWithoutJest.ts -P",
     "prettier": " npx prettier  --write --arrow-parens avoid --parser typescript --use-tabs false --no-semi true --single-quote true --tab-width 2 --trailing-comma all --end-of-line lf --prose-wrap preserve --print-width 120 --no-bracket-spacing  --jsx-bracket-same-line true \"src/**/*.ts*\"",
-    "all": "npm run clean && npm run prettier && npm run build && npm run test && npm run docs",
+    "all": "npm run clean && npm run prettier && npm run build && npm run test && npm run docs && npx get-type-text --cleanArguments",
     "docs": "npx typedoc src/types.ts src/checkType.ts src/expectType.ts --theme markdown --out api",
-    "clean": "rm -rf dist docs api",
-    "prepare": "npm run build"
+    "clean": "rm -rf dist docs api && npx get-type-text --cleanArguments",
+    "prepare": "npx get-type-text --cleanArguments && npm run build"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
     "@types/node": "^10.12.18",
+    "get-type-text": "0.0.4",
     "jest": "^24.5.0",
     "prettier": "^1.16.4",
     "ts-jest": "^24.0.0",
     "ts-node": "^7.0.1",
+    "ts-simple-ast": "^21.0.4",
     "typedoc": "^0.13.0",
     "typedoc-plugin-markdown": "^1.1.27",
-    "ts-simple-ast": "^21.0.4",
     "typescript": "^3.3.3333"
   },
   "dependencies": {
