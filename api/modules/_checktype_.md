@@ -23,7 +23,7 @@
 
 **● project**: *`Project`*
 
-*Defined in [checkType.ts:89](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/checkType.ts#L89)*
+*Defined in [checkType.ts:89](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/checkType.ts#L89)*
 
 ___
 
@@ -35,7 +35,7 @@ ___
 
 ▸ **checkType**<`T`>(typeOrFunction: *[TypeRepresentation](_types_.md#typerepresentation)<`T`>*, value: *`T`*, options?: *[Options](../interfaces/_types_.options.md)*): [Result](../interfaces/_types_.result.md)
 
-*Defined in [checkType.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/checkType.ts#L7)*
+*Defined in [checkType.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/checkType.ts#L7)*
 
 **Type parameters:**
 
@@ -57,7 +57,7 @@ ___
 
 ▸ **checkTypeCore**<`T`>(typeOrFunction: *[TypeRepresentation](_types_.md#typerepresentation)<`T`>*, value: *`T`*, options?: *[Options](../interfaces/_types_.options.md)*): [Result](../interfaces/_types_.result.md)
 
-*Defined in [checkType.ts:11](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/checkType.ts#L11)*
+*Defined in [checkType.ts:11](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/checkType.ts#L11)*
 
 *__internal__*: 
 

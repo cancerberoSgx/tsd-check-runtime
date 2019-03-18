@@ -29,7 +29,7 @@
 
 **● dontEscape**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:9](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/types.ts#L9)*
+*Defined in [types.ts:9](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/types.ts#L9)*
 
 pass true if you are already passing a quoted value. By default value is escaped in the output
 
@@ -40,7 +40,7 @@ ___
 
 **● dontVerifyFile**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/types.ts#L7)*
+*Defined in [types.ts:7](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/types.ts#L7)*
 
 ___
 <a id="enforcejsonvalues"></a>
@@ -49,7 +49,7 @@ ___
 
 **● enforceJsonValues**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:4](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/types.ts#L4)*
+*Defined in [types.ts:4](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/types.ts#L4)*
 
 ___
 <a id="folder"></a>
@@ -58,7 +58,7 @@ ___
 
 **● folder**: *`undefined` \| `string`*
 
-*Defined in [types.ts:6](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/types.ts#L6)*
+*Defined in [types.ts:6](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/types.ts#L6)*
 
 When using `tsConfigFilePath` that's in another folder specify it with this option.
 
@@ -69,7 +69,7 @@ ___
 
 **● printResult**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:12](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/types.ts#L12)*
+*Defined in [types.ts:12](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/types.ts#L12)*
 
 ___
 <a id="printresultiffail"></a>
@@ -78,7 +78,7 @@ ___
 
 **● printResultIfFail**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:11](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/types.ts#L11)*
+*Defined in [types.ts:11](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/types.ts#L11)*
 
 ___
 <a id="tsconfigfilepath"></a>
@@ -87,7 +87,7 @@ ___
 
 **● tsConfigFilePath**: *`undefined` \| `string`*
 
-*Defined in [types.ts:3](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/types.ts#L3)*
+*Defined in [types.ts:3](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/types.ts#L3)*
 
 Use another tsconfig.json file than the default './tsconfig.json'. If so make sure you also set the property `folder` if it's in another folder
 
@@ -98,7 +98,7 @@ ___
 
 **● verifyProject**: *`undefined` \| `false` \| `true`*
 
-*Defined in [types.ts:10](https://github.com/cancerberoSgx/tsd-check-runtime/blob/a90bf86/src/types.ts#L10)*
+*Defined in [types.ts:10](https://github.com/cancerberoSgx/tsd-check-runtime/blob/78b03d8/src/types.ts#L10)*
 
 ___
 
