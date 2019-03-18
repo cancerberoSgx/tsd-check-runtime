@@ -1,6 +1,6 @@
 {
   "name": "tsd-check-runtime",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "TypeScript type declaration verification library. It's like tsd-check but works at runtime, actually compiling the code",
   "types": "dist/src/index.d.ts",
   "main": "dist/src/index.js",
