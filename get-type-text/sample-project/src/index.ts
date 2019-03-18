@@ -5,3 +5,9 @@ const b = TypeText<{a:'a'}>()
 const c = TypeText<{a:"a"}>()
 
 console.log(`${n} ${b} ${c}`);
+
+function user(s:string){
+
+}
+
+user(TypeText<number>())
