@@ -1,8 +1,41 @@
 import { TypeGuards, SyntaxKind, Identifier, SourceFile, CallExpression } from 'ts-simple-ast';
 import { quote } from "./util";
+
 export function replaceFunctionCall(sourceFile: SourceFile, moduleSpecifier: string, name: string) {
-  const callExpressions = extractCallExpressionsFrom(sourceFile, 'foo', 'NameOf');
-  callExpressions.forEach(c => c.replaceWithText(quote(c.getTypeArguments()[0]!.getText())));
+  const callExpressions = extractCallExpressionsFrom(sourceFile, moduleSpecifier, name);
+  callExpressions.forEach(c => {
+    //TODO: verify type argument 0 exists and has correct type
+    if(c.getArguments().length===0){
+      // first time
+    c.addArgument(getTypeText(c))
+    }
+    else if(c.getArguments().length===1){
+      // second time
+      c.getArguments()[0].replaceWithText(getArgumentText(c))
+    }
+    else {
+      throw 'more than 1 argument - contract broken'
+      // TODO: remove all the arguments
+    }
+    // c.replaceWithText(quote(c.getTypeArguments()[0]!.getText()))
+  });
+}
+
+function getTypeText(c:CallExpression){
+  //TODO: veryfy type argument exist
+  const t= c.getTypeArguments()[0]!.getText()
+  return quote(t)
+}
+function getArgumentText(c: CallExpression){
+  const text = getTypeText(c)
+
+  // const s = quote(`${text}`)
+return text
+  // return ``
+}
+function extractArgumentText(c: CallExpression):string{
+    //TODO: verify type argument 0 exists and has correct type
+  return c.getArguments()[0]!.getText()
 }
 function extractCallExpressionsFrom(sourceFile: SourceFile, moduleSpecifier: string, name: string) {
   const ids = sourceFile.getDescendants().filter(TypeGuards.isCallExpression).map(c => c.getFirstChildByKind(SyntaxKind.Identifier)).filter(i => i && i.getText() === name) as Identifier[];

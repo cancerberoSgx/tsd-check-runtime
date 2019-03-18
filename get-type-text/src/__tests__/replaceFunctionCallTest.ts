@@ -5,34 +5,53 @@ import { replaceFunctionCall } from '../replaceFunctionCall';
 describe('replaceFunctionCall', ()=>{ 
   it('should  replace given function name and module specifier with first type attr text', ()=>{
     const project = new Project()
-    const sourceFile= project.createSourceFile('test.ts', `
-import NameOf from 'foo'
+      project.createSourceFile('test.ts', `
+import TypeText from 'get-type-text'
 type Type<T> = {a: string, b: T}[]
-const n = NameOf<Type<Date>>()
-const b = NameOf<{a:'a'}>()
-const c = NameOf<{a:"a"}>()
-NameOf<Type<Date>>()
-NameOf<{a:'a'}>()
-NameOf<{a:"a"}>()
+const n = TypeText<Type<Date>>()
+const b = TypeText<{a:'a'}>()
+const c = TypeText<{a:"a"}>()
     `)
 
-    replaceFunctionCall(sourceFile, 'foo', 'NameOf');
+    replaceFunctionCall(project.getSourceFile('test.ts')!, 'get-type-text', 'TypeText');
     
     const t = project.getSourceFile('test.ts')!.getText()
     
-    console.log(t);
 
     expect(t).toContain(`
-import NameOf from 'foo'
+import TypeText from 'get-type-text'
 type Type<T> = {a: string, b: T}[]
-const n = "Type<Date>"
-const b = "{a:'a'}"
-const c = "{a:\\"a\\"}"
-"Type<Date>"
-"{a:'a'}"
-"{a:\\"a\\"}"
+const n = TypeText<Type<Date>>('Type<Date>')
+const b = TypeText<{a:'a'}>('{a:\\'a\\'}')
+const c = TypeText<{a:"a"}>('{a:"a"}')
     `.trim())
     
+    // and now the second time without modifications
+    project.getSourceFile('test.ts')!.replaceWithText(`
+import TypeText from 'get-type-text'
+type Type<T> = {a: string, b: T}[]
+const n = TypeText<Type<Date>>('Type<Date>')
+const b = TypeText<Type<{a:'a'}>>('{a:\\'a\\'}')
+const c = TypeText<{a:Type<number>}>('{a:"a"}')
+        `.trim())
+
+    // console.log(project.getSourceFile('test.ts')!.getText());
+
+
+    replaceFunctionCall(project.getSourceFile('test.ts')!, 'get-type-text', 'TypeText');
+    // project.getSourceFile('test.ts')!.saveSync()
+    // project.saveSync()
+
+    const t2 = project.getSourceFile('test.ts')!.getText()
+    // console.log(project.getSourceFile('test.ts')!.getText());
+
+    expect(t2).toContain(`
+import TypeText from 'get-type-text'
+type Type<T> = {a: string, b: T}[]
+const n = TypeText<Type<Date>>('Type<Date>')
+const b = TypeText<Type<{a:'a'}>>('Type<{a:\\'a\\'}>')
+const c = TypeText<{a:Type<number>}>('{a:Type<number>}')
+`.trim())
   })
 })
 

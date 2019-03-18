@@ -23,9 +23,7 @@
     "tsd-check-runtime": "file:..",
     "typescript": "^3.3.3333"
   },
-  "dependencies": {
-    "yargs-parser": "^13.0.0"
-  },
+  "dependencies": {},
   "keywords": [
     "JavaScript",
     "TypeScript",
