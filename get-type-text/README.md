@@ -1,41 +1,82 @@
-trying to develop a preprocessing tool to mutate TypeScript and replace certain function call expressions with referenced type text so we have access to this info at runtime
+# get-type-text 
 
-WIP
+An unconventional way of getting a type text at runtime in TypeScript
 
- * if I cannot radically replace types with strings in files in place because types will be lost
+# Why ?
 
-alternative 1: Make the function signature to return more than a string.replace inplace function calls by adding a parameter with the string. Uers will know not to touch that (we can put a comment). Also the second time we want to replace in the existing string. 
+ * https://github.com/Microsoft/TypeScript/issues/14419
+ * I need to get a type text at runtime and I cannot hardcode it as string since it will get outdated on code refactors
+ * I don't want to use a tsc wrapper like ttypescript
+ 
+# What ?
 
-type TypeText = <T>(_typeText?: string)=>{toString():string}
+```
+npm install -D get-type-text
+```
 
-user authored:
+```ts
+import TypeText from 'get-type-text'
+import { UnionOf } from '..'
+const x = TypeText<UnionOf<[1, Date[]]>>()
+const z = TypeText<UnionOf<[1, boolean | string]>>()
+console.log(x, z)
+```
 
-var a=TypeText<{super:string,type:boolean[][]}>()
+Executing the program gives, as expected:
 
-after running the tool for the first time: 
+```sh
+undefined undefined
+```
 
-var a=TypeText<{super:string,type:boolean[][]}>(/*DONT_TOUCH*/"{super:string,type:boolean[][]}"/*DONT_TOUCH*/)
+But executing:
 
-user changed the type (in a refactor):
+```sh
+npx get-type-text
+```
+
+and running the program again we get:
+
+```sh
+Type<Date> { a: 'a' } { a: "a" }
+UnionOf<[1, Date[]]> UnionOf<[1, boolean | string]>
+```
+
+But at a terrible cost, go back to your source file and see how it changed:
+
+```ts
+import TypeText from 'get-type-text'
+import { UnionOf } from '..'
+const x = TypeText<UnionOf<[1, Date[]]>>('UnionOf<[1, Date[]]>')
+const z = TypeText<UnionOf<[1, boolean | string]>>('UnionOf<[1, boolean | string]>')
+console.log(x, z)
+```
+
+## Options
 
 
-var a=TypeText<MyOtherType>(/*DONT_TOUCH*/"{super:string,type:boolean[][]}"/*DONT_TOUCH*/)
+## Workflow
 
-second time the the tool runs:
+Basically use this only for test projects. Run `npx get-type-text` before `npm test` or `tsc`, `ts-node`, `jest`, etc. 
 
-var a=TypeText<MyOtherType>(/*DONT_TOUCH*/"MyOtherType"/*DONT_TOUCH*/)
+### Rollback
 
-Notes:
+To rollback the changes execute the following command. It will clean all the added arguments:
 
- * user never touch the parameter
- * we dont need the comment - is just for the user
- * we can alternatively mark the string: var a=TypeText<MyOtherType>("_DONT_TOUCH_MyOtherType")
+```
+npx get-type-string --cleanArguments
+```
 
-Initial implementation limitations: 
+## Motivation
 
- * user needs to import the function using that module specifier 'get-type-text'
- * they cannot call on a reference only to the exported id of that module
+Trying to test types utilities, like:
 
+```ts
+import TypeText from 'get-type-text'
+import { UnionOf } from '..'
+test('UnionOf transform a tuple into an union type', () => {
+  expect(2).not.toMatchType(TypeText<UnionOf<[1, false]>>)
+  expect(1).toMatchType(TypeText<UnionOf<[1, false]>>)
+})
+```
 
-
-alternative 2: generate comments inplace .ts and then post process emitted files and replace there. I dont like it
+Trying to develop a preprocessing tool to mutate TypeScript and replace certain function call expressions with referenced type text so we have access to this info at runtime. tsd-check is not enough for me since I need to verify types at runtime to reproduce false positives, and isNot helpers. (I cannot reproduce an error at compile time in a test)

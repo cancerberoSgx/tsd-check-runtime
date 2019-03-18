@@ -1,4 +1,4 @@
-export default function TypeText<T>( t?:string): string {
+export default function TypeText<T>(t?: string): string {
   // return {
   //   // toString: (function (this:string|undefined){
   //   //   return this
