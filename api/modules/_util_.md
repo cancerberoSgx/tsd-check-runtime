@@ -27,7 +27,7 @@
 
 **● _unique**: *`number`* = 0
 
-*Defined in [util.ts:23](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1593374/src/util.ts#L23)*
+*Defined in [util.ts:23](https://github.com/cancerberoSgx/tsd-check-runtime/blob/5c7e3e9/src/util.ts#L23)*
 
 ___
 <a id="callsites"></a>
@@ -36,7 +36,7 @@ ___
 
 **● callsites**: *`any`* =  require('callsites')
 
-*Defined in [util.ts:56](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1593374/src/util.ts#L56)*
+*Defined in [util.ts:56](https://github.com/cancerberoSgx/tsd-check-runtime/blob/5c7e3e9/src/util.ts#L56)*
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 ▸ **escapeValue**<`T`>(v: *`T`*, options: *[Options](../interfaces/_types_.options.md)*): `string` \| `undefined`
 
-*Defined in [util.ts:33](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1593374/src/util.ts#L33)*
+*Defined in [util.ts:33](https://github.com/cancerberoSgx/tsd-check-runtime/blob/5c7e3e9/src/util.ts#L33)*
 
 *__internal__*: 
 
@@ -71,7 +71,7 @@ ___
 
 ▸ **formatDiagnostics**(d: *`Diagnostic`[]*): [CompilationError](../interfaces/_types_.compilationerror.md)[]
 
-*Defined in [util.ts:6](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1593374/src/util.ts#L6)*
+*Defined in [util.ts:6](https://github.com/cancerberoSgx/tsd-check-runtime/blob/5c7e3e9/src/util.ts#L6)*
 
 *__internal__*: 
 
@@ -88,13 +88,13 @@ ___
 
 ###  getCallerFile
 
-▸ **getCallerFile**(): `string` \| `undefined`
+▸ **getCallerFile**(): `object`
 
-*Defined in [util.ts:58](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1593374/src/util.ts#L58)*
+*Defined in [util.ts:58](https://github.com/cancerberoSgx/tsd-check-runtime/blob/5c7e3e9/src/util.ts#L58)*
 
 *__internal__*: 
 
-**Returns:** `string` \| `undefined`
+**Returns:** `object`
 
 ___
 <a id="quote"></a>
@@ -103,7 +103,7 @@ ___
 
 ▸ **quote**(s: *`string`*, q?: *`string`*): `string`
 
-*Defined in [util.ts:29](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1593374/src/util.ts#L29)*
+*Defined in [util.ts:29](https://github.com/cancerberoSgx/tsd-check-runtime/blob/5c7e3e9/src/util.ts#L29)*
 
 *__internal__*: 
 
@@ -123,7 +123,7 @@ ___
 
 ▸ **unique**(prefix?: *`string`*): `string`
 
-*Defined in [util.ts:25](https://github.com/cancerberoSgx/tsd-check-runtime/blob/1593374/src/util.ts#L25)*
+*Defined in [util.ts:25](https://github.com/cancerberoSgx/tsd-check-runtime/blob/5c7e3e9/src/util.ts#L25)*
 
 *__internal__*: 
 

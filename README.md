@@ -141,3 +141,10 @@ expect(expectType(value => `const v: typeof describe = ${value}`, describe,
 ### Type Reference limitations
 
  **reference types in the global scope only**. If you reference a type that is declared in the local closure (i.e inside the `it()` it will fail)
+
+
+## Problems
+
+ * Writing types as string has a big problem and that is refactors since they won't be updated. can we don something about it? 
+   * using https://github.com/dsherret/ts-nameof . in jest seems straight forward : https://github.com/dsherret/ts-nameof/blob/master/packages/ts-nameof/setup/jest.md , but in tsx is not so .. https://github.com/dsherret/ts-nameof/blob/master/packages/ts-nameof/setup/tsc.md
+   * could we develop some sort of post process to store the info externally ?

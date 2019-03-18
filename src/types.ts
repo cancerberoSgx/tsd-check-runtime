@@ -17,6 +17,9 @@ export interface Result {
   failErrors?: CompilationError[]
   code?: string
   testCode?: string
+  callerFile?: string
+  filePath?: string
+  allCallerFiles: string[]
 }
 export interface CompilationError {
   message: string

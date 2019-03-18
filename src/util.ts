@@ -55,16 +55,21 @@ export function escapeValue<T>(v: T, options: Options): string | undefined {
 
 const callsites = require('callsites')
 /** @internal */
-export function getCallerFile(): string | undefined {
+export function getCallerFile(): {callerFile: string | undefined; allCallerFiles: string[]} {
   const c = callsites() as any[]
-
-  // this is for the case of using jest matcher from an external project:
-  const jestMatcher = c.filter(c => c.getFileName()).findIndex(c => c.getFileName().endsWith('dist/src/jestMatcher.js'))
+  let f: string | undefined
+  const jestMatcher = c
+    .filter(c => c.getFileName())
+    .findIndex(
+      c => c.getFileName().endsWith('dist/src/jestMatcher.js') || c.getFileName().endsWith('src/jestMatcher.ts'),
+    )
   if (jestMatcher !== -1) {
-    return c[jestMatcher + 2].getFileName()
+    // this is for the case of using jest matcher from an external project:
+    f = c[jestMatcher + 2].getFileName()
+  } else {
+    // this works for the rest of the environments
+    f = c[3] && c[3].getFileName()
   }
-  // console.log(c.map((c: any) => c.getFileName()))
-
-  // this works for the rest of the environments
-  return c[3] && c[3].getFileName()
+  // console.log('choose: ', f, 'all\n', c.map((c: any) => c.getFileName()))
+  return {callerFile: f, allCallerFiles: c.map((c: any) => c.getFileName()).map(c => c)}
 }

@@ -5,7 +5,7 @@ test('types imported from other files or projects is fine', () => {
   expect(expectType('KeysToTuple<typeof Object.prototype>', 'will fail')).toBe(false)
   expect(
     expectType('KeysToTuple<typeof Object.prototype>', ['hasOwnProperty', 'isPrototypeOf', 'propertyIsEnumerable'], {
-      printResultIfFail: true,
+      // printResultIfFail: true,
     }),
   ).toBe(true)
 })

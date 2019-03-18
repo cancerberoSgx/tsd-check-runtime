@@ -1,5 +1,5 @@
 import {Project, Diagnostic, ts, SourceFile} from 'ts-simple-ast'
-import {dirname, join} from 'path'
+import {dirname, join, basename} from 'path'
 import {readFileSync} from 'fs'
 import {Options, Result, TypeRepresentation} from './types'
 import {getCallerFile, formatDiagnostics, unique, escapeValue} from './util'
@@ -18,11 +18,12 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
       addFilesFromTsConfig: true,
     })
   }
-  const callerFile = getCallerFile()
+  const {callerFile, allCallerFiles} = getCallerFile()
   if (!callerFile) {
     return {
       pass: false,
       error: `Caller source file cannot be found, aborting`,
+      allCallerFiles,
     }
   }
   const callerSourceFile = project.getSourceFile(callerFile)
@@ -30,6 +31,8 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
     return {
       pass: false,
       error: `Caller source must belong to ${tsConfigFilePath} project but ${callerFile} does not`,
+      callerFile,
+      allCallerFiles,
     }
   }
   if (options.verifyProject) {
@@ -40,6 +43,8 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
         error: `Given TypeScript project cannot have compilation errors, fix them and try again. Errors: ${formatDiagnostics(
           d,
         )}`,
+        callerFile,
+        allCallerFiles,
       }
     }
   } else if (!options.dontVerifyFile) {
@@ -50,12 +55,14 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
         error: `Caller TypeScript file cannot have compilation errors, fix them and try again. Errors: ${formatDiagnostics(
           d,
         )}`,
+        callerFile,
+        allCallerFiles,
       }
     }
   }
   //TODO: verify it's contained in project
-  const fileName = `${options.folder || ''}${unique('expectTypeNotToBe')}.ts`
   const folderName = dirname(callerFile)
+  const fileName = `${options.folder || ''}${unique(basename(callerFile, '.ts'))}.ts` // TODO: callerFile could be tsx
   const filePath = join(folderName, fileName)
   let testCode: string
   const escapedValue = options.dontEscape ? value : escapeValue(value, options)
@@ -63,6 +70,9 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
     return {
       pass: false,
       error: `Value is not JSON and option enforceJsonValues was used`,
+      callerFile,
+      filePath,
+      allCallerFiles,
     }
   }
   if (typeof typeOrFunction === 'string') {
@@ -80,9 +90,12 @@ export function checkTypeCore<T>(typeOrFunction: TypeRepresentation<T>, value: T
     failErrors: formatDiagnostics(d),
     code,
     testCode,
+    callerFile,
+    filePath,
+    allCallerFiles,
   }
   if (options.printResult || (!r.pass && options.printResultIfFail)) {
-    console.log(r)
+    console.log(JSON.stringify(r, null, 2))
   }
   return r
 }
