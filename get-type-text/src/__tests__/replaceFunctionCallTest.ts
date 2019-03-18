@@ -13,7 +13,7 @@ const b = TypeText<{a:'a'}>()
 const c = TypeText<{a:"a"}>()
     `)
 
-    replaceFunctionCall(project.getSourceFile('test.ts')!, 'get-type-text', 'TypeText');
+    replaceFunctionCall(project.getSourceFile('test.ts')!, {moduleSpecifier: 'get-type-text', functionName: 'TypeText'});
     
     const t = project.getSourceFile('test.ts')!.getText()
     
@@ -38,7 +38,7 @@ const c = TypeText<{a:Type<number>}>('{a:"a"}')
     // console.log(project.getSourceFile('test.ts')!.getText());
 
 
-    replaceFunctionCall(project.getSourceFile('test.ts')!, 'get-type-text', 'TypeText');
+    replaceFunctionCall(project.getSourceFile('test.ts')!);
     // project.getSourceFile('test.ts')!.saveSync()
     // project.saveSync()
 

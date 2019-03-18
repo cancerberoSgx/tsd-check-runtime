@@ -1,6 +1,6 @@
 {
   "name": "get-type-text",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "ample-project",
   "types": "dist/src/index.d.ts",
   "main": "dist/src/index.js",
@@ -10,8 +10,10 @@
     "build": "tsc ",
     "build-watch": "tsc -w",
     "clean": "rm -rf dist docs api",
-    "test": "jest --config ./jest.config-spec.js ",
-    "test-watch": "npm test -- --watch",
+    "test-run": "jest --config ./jest.config-spec.js ",
+    "test": "npm run test-run && npm run test-standalone && npm run sample-project", 
+    "sample-project": "cd sample-project && ([ -d node_modules ] || npm i]) && npm run all",
+    "test-watch": "npm run test-run -- --watch",
     "all": "npm run clean && npm run build && npm run test ",
     "prepare": "npm run build"
   },

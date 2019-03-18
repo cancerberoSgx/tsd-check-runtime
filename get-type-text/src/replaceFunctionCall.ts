@@ -2,22 +2,28 @@ import { TypeGuards, SyntaxKind, Identifier, SourceFile, CallExpression } from '
 import { quote } from "./util";
 import { Replacement } from './main';
 
-export function replaceFunctionCall(sourceFile: SourceFile, moduleSpecifier: string, name: string):(Replacement|undefined)[]  {
+export interface ReplaceFunctionCallsOptions {
+  moduleSpecifier?:string
+  functionName?: string
+  cleanArguments?: boolean
+}
+  export function replaceFunctionCall(sourceFile: SourceFile, {moduleSpecifier='get-type-text', functionName='TypeText', cleanArguments=false}: ReplaceFunctionCallsOptions={moduleSpecifier: 'get-type-text', functionName: 'TypeText'}):(Replacement|undefined)[]  {
   const replaced: Replacement[]= [ ]
-  const callExpressions = extractCallExpressionsFrom(sourceFile, moduleSpecifier, name);
+  const callExpressions = extractCallExpressionsFrom(sourceFile, moduleSpecifier, functionName, );
   callExpressions.forEach(c => {
+    
     //TODO: verify type argument 0 exists and has correct type
-    if(c.getArguments().length===0){
+    if(c.getArguments().length===0 && !cleanArguments){
       // first time
       const r = getTypeText(c)
     c.addArgument(r)
     replaced.push({file: sourceFile.getFilePath(), replacement: r, firstTime: true})
     }
     else if(c.getArguments().length===1){
-      // second time}
-      const t = getArgumentText(c)
-      c.getArguments()[0].replaceWithText(t)
-    replaced.push({file: sourceFile.getFilePath(), replacement: t, firstTime: false})
+// second time}
+const t = cleanArguments?'':getArgumentText(c)
+c.getArguments()[0].replaceWithText(t)
+replaced.push({file: sourceFile.getFilePath(), replacement: t, firstTime: false})
 
     }
     else {
