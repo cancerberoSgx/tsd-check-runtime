@@ -40,14 +40,9 @@ const c = TypeText<{a:Type<number>}>('{a:"a"}')
         `.trim(),
     )
 
-    // console.log(project.getSourceFile('test.ts')!.getText());
-
     replaceFunctionCall(project.getSourceFile('test.ts')!)
-    // project.getSourceFile('test.ts')!.saveSync()
-    // project.saveSync()
 
     const t2 = project.getSourceFile('test.ts')!.getText()
-    // console.log(project.getSourceFile('test.ts')!.getText());
 
     expect(t2).toContain(
       `
