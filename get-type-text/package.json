@@ -11,7 +11,7 @@
     "build-watch": "tsc -w",
     "clean": "rm -rf dist docs api",
     "test-run": "jest --config ./jest.config-spec.js ",
-    "test": "npm run test-run && npm run test-standalone && npm run sample-project", 
+    "test": "npm run test-run &&  npm run sample-project", 
     "sample-project": "cd sample-project && ([ -d node_modules ] || npm i]) && npm run all",
     "test-watch": "npm run test-run -- --watch",
     "all": "npm run clean && npm run build && npm run test ",
