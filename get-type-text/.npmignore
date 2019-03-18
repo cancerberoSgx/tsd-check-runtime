@@ -7,5 +7,4 @@ tsconfig.json
 .vscode
 *.tgz
 api
-get-type-text
 sample-project
