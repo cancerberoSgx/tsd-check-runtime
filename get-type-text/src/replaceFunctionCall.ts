@@ -1,6 +1,7 @@
 import {TypeGuards, SyntaxKind, Identifier, SourceFile, CallExpression} from 'ts-simple-ast'
 import {Replacement, ReplaceFunctionCallsOptions, FUNCTION_NAME, MODULE_SPECIFIER_DEFAULT} from './types'
 
+/** JavaScript API to replace arguments of all function expression calls in given (ts-simple-ast SourceFile) file that match given options. See  `ReplaceFunctionCallsOptions`. */
 export function replaceFunctionCall(
   sourceFile: SourceFile,
   {
